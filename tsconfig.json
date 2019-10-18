@@ -23,7 +23,7 @@
     "noFallthroughCasesInSwitch": true,
     "suppressImplicitAnyIndexErrors": true,
     "paths": {
-      "@ngxs-labs/of-executing": ["src/public-api.ts"]
+      "@ngxs-labs/actions-executing": ["src/public-api.ts"]
     }
   }
 }

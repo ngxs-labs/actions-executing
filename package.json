@@ -1,9 +1,9 @@
 {
-  "name": "of-executing",
+  "name": "actions-executing",
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ngxs-labs/of-executing.git"
+    "url": "git+https://github.com/ngxs-labs/actions-executing.git"
   },
   "license": "MIT",
   "scripts": {
@@ -18,9 +18,9 @@
     "build:integration": "ng run integration:build:production",
     "build:integration:ssr": "ng run integration:server:production",
     "// - PROVISIONING": "Provisioning scripts",
-    "of-executing:lint": "ng lint of-executing",
-    "of-executing:test": "ng test --runInBand",
-    "of-executing:build": "ts-node ./tools/build && ts-node ./tools/copy-readme",
+    "actions-executing:lint": "ng lint actions-executing",
+    "actions-executing:test": "ng test --runInBand",
+    "actions-executing:build": "ts-node ./tools/build && ts-node ./tools/copy-readme",
     "// - E2E": "E2E testing #requires yarn build:integration",
     "cy:open": "cypress open --config integrationFolder=cypress/integration",
     "cy:open:ssr": "cypress open --config integrationFolder=cypress/ssr",
@@ -33,7 +33,7 @@
     "e2e:ssr": "start-test serve:integration:ssr 4200 cy:open:ssr",
     "e2e:chromium": "start-test serve:integration 4200 cy:run:chromium",
     "// - CI": "CI Testing",
-    "test:ci": "ng test --project of-executing --colors --runInBand",
+    "test:ci": "ng test --project actions-executing --colors --runInBand",
     "test:ci:e2e": "yarn start-test serve:integration:static 4200 cy:run",
     "test:ci:integration": "yarn build:integration",
     "test:ci:integration:ssr": "yarn build:integration:ssr && yarn start-test serve:integration:ssr 4200 cy:run:ssr",

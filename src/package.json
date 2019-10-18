@@ -1,15 +1,15 @@
 {
   "$schema": "../node_modules/ng-packagr/package.schema.json",
-  "name": "@ngxs-labs/of-executing",
+  "name": "@ngxs-labs/actions-executing",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ngxs-labs/of-executing.git"
+    "url": "git+https://github.com/ngxs-labs/actions-executing.git"
   },
   "license": "MIT",
-  "homepage": "https://github.com/ngxs-labs/of-executing#readme",
+  "homepage": "https://github.com/ngxs-labs/actions-executing#readme",
   "bugs": {
-    "url": "https://github.com/ngxs-labs/of-executing/issues"
+    "url": "https://github.com/ngxs-labs/actions-executing/issues"
   },
   "keywords": [
     "ngxs",
@@ -24,12 +24,12 @@
   },
   "ngPackage": {
     "lib": {
-      "flatModuleFile": "ngxs-labs-of-executing",
+      "flatModuleFile": "ngxs-labs-actions-executing",
       "entryFile": "index.ts",
       "umdModuleIds": {
         "@ngxs/store": "ngxs-store"
       }
     },
-    "dest": "../dist/of-executing"
+    "dest": "../dist/actions-executing"
   }
 }

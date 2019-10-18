@@ -1,128 +1,122 @@
 {
-    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-    "version": 1,
-    "newProjectRoot": "projects",
-    "projects": {
-      "of-executing": {
-        "root": "",
-        "sourceRoot": "src",
-        "projectType": "library",
-        "prefix": "of-executing",
-        "architect": {
-          "build": {
-            "builder": "@angular-devkit/build-ng-packagr:build",
-            "options": {
-              "tsConfig": "integration/tsconfig.lib.json",
-              "project": "integration/ng-package.json"
-            },
-            "configurations": {
-              "production": {
-                "project": "integration/ng-package.prod.json"
-              }
-            }
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "actions-executing": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "library",
+      "prefix": "actions-executing",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "src/tsconfig.lib.json",
+            "project": "src/ng-package.json"
           },
-          "test": {
-            "builder": "@angular-builders/jest:run",
-            "options": {
-              "no-cache": false
-            }
-          },
-          "lint": {
-            "builder": "@angular-devkit/build-angular:tslint",
-            "options": {
-              "tsConfig": [
-                "src/tsconfig.lib.json",
-                "tsconfig.spec.json"
-              ],
-              "exclude": [
-                "**/node_modules/**"
-              ]
+          "configurations": {
+            "production": {
+              "project": "src/ng-package.prod.json"
             }
           }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "no-cache": false
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.lib.json",
+              "tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
         }
-      },
-      "integration": {
-        "root": "integration",
-        "sourceRoot": ".",
-        "projectType": "application",
-        "prefix": "app",
-        "architect": {
-          "build": {
-            "builder": "@angular-devkit/build-angular:browser",
-            "options": {
-              "outputPath": "dist-integration",
-              "index": "integration/index.html",
-              "main": "integration/main.ts",
-              "polyfills": "integration/polyfills.ts",
-              "tsConfig": "integration/tsconfig.app.json",
-              "preserveSymlinks": true,
-              "assets": [
-                "integration/assets"
-              ]
-            },
-            "configurations": {
-              "production": {
-                "fileReplacements": [
-                  {
-                    "replace": "integration/environments/environment.ts",
-                    "with": "integration/environments/environment.prod.ts"
-                  }
-                ],
-                "optimization": true,
-                "outputHashing": "all",
-                "sourceMap": false,
-                "extractCss": true,
-                "namedChunks": false,
-                "aot": true,
-                "extractLicenses": true,
-                "vendorChunk": false,
-                "buildOptimizer": true,
-                "budgets": [
-                  {
-                    "type": "initial",
-                    "maximumWarning": "2mb",
-                    "maximumError": "5mb"
-                  }
-                ]
-              }
-            }
+      }
+    },
+    "integration": {
+      "root": "integration",
+      "sourceRoot": ".",
+      "projectType": "application",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist-integration",
+            "index": "integration/index.html",
+            "main": "integration/main.ts",
+            "polyfills": "integration/polyfills.ts",
+            "tsConfig": "integration/tsconfig.app.json",
+            "preserveSymlinks": true,
+            "assets": [
+              "integration/assets"
+            ]
           },
-          "serve": {
-            "builder": "@angular-devkit/build-angular:dev-server",
-            "options": {
-              "browserTarget": "integration:build"
-            },
-            "configurations": {
-              "production": {
-                "browserTarget": "integration:build:production"
-              }
+          "configurations": {
+            "production": {
+              "fileReplacements": [{
+                "replace": "integration/environments/environment.ts",
+                "with": "integration/environments/environment.prod.ts"
+              }],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [{
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }]
             }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "integration:build"
           },
-          "server": {
-            "builder": "@angular-devkit/build-angular:server",
-            "options": {
-              "outputPath": "dist-integration-server",
-              "main": "integration/main.server.ts",
-              "tsConfig": "integration/tsconfig.server.json"
-            },
-            "configurations": {
-              "production": {
-                "fileReplacements": [
-                  {
-                    "replace": "integration/environments/environment.ts",
-                    "with": "integration/environments/environment.prod.ts"
-                  }
-                ]
-              }
+          "configurations": {
+            "production": {
+              "browserTarget": "integration:build:production"
             }
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist-integration-server",
+            "main": "integration/main.server.ts",
+            "tsConfig": "integration/tsconfig.server.json"
           },
-          "test": {
-            "builder": "@angular-builders/jest:run",
-            "options": {
-              "no-cache": false
+          "configurations": {
+            "production": {
+              "fileReplacements": [{
+                "replace": "integration/environments/environment.ts",
+                "with": "integration/environments/environment.prod.ts"
+              }]
             }
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "no-cache": false
           }
         }
       }
     }
   }
+}
