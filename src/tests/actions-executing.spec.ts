@@ -5,7 +5,6 @@ import { of, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 describe('actionsExecuting', () => {
-
   let store: Store;
   let actions: Actions;
 
@@ -38,7 +37,7 @@ describe('actionsExecuting', () => {
   })
   class TestState {
     @Action([Action1])
-    action1() { }
+    action1() {}
 
     @Action([AsyncAction1])
     asyncAction1() {
@@ -63,12 +62,7 @@ describe('actionsExecuting', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgxsModule.forRoot([
-          TestState
-        ]),
-        NgxsActionsExecutingModule.forRoot()
-      ]
+      imports: [NgxsModule.forRoot([TestState]), NgxsActionsExecutingModule.forRoot()]
     });
 
     store = TestBed.get(Store);
@@ -79,7 +73,6 @@ describe('actionsExecuting', () => {
     describe('Sync Action', () => {
       it('should be null', () => {
         store.dispatch(Action1);
-
 
         const snapshot = store.selectSnapshot(actionsExecuting([Action1]));
         expect(snapshot).toBe(null);
@@ -170,7 +163,9 @@ describe('actionsExecuting', () => {
         store.dispatch(new Action2());
         expect(actionStatus).toEqual([
           null,
-          { [Action1.type]: 1, [Action2.type]: 1 },
+          { [Action1.type]: 1 },
+          null,
+          { [Action2.type]: 1 },
           null
         ]);
       });
@@ -186,7 +181,9 @@ describe('actionsExecuting', () => {
         store.dispatch(new ErrorAction1());
         expect(actionStatus).toEqual([
           null,
-          { [Action1.type]: 1, [ErrorAction1.type]: 1 },
+          { [Action1.type]: 1 },
+          null,
+          { [ErrorAction1.type]: 1 },
           null
         ]);
       });
@@ -201,9 +198,7 @@ describe('actionsExecuting', () => {
 
         store.dispatch(new AsyncAction1());
         tick(1);
-        expect(actionStatus).toEqual([
-          null, { [AsyncAction1.type]: 1 }, null
-        ]);
+        expect(actionStatus).toEqual([null, { [AsyncAction1.type]: 1 }, null]);
         store.dispatch(new AsyncAction2());
         tick(1);
         expect(actionStatus).toEqual([
@@ -226,42 +221,60 @@ describe('actionsExecuting', () => {
 
         store.dispatch(new AsyncAction1());
         tick(1);
-        expect(actionStatus).toEqual([
-          null, { [AsyncAction1.type]: 1 }, null
-        ]);
+        expect(actionStatus).toEqual([null, { [AsyncAction1.type]: 1 }, null]);
         store.dispatch(new AsyncErrorAction1());
         tick(1);
         expect(actionStatus).toEqual([
-          null, { [AsyncAction1.type]: 1 }, null
+          null,
+          { [AsyncAction1.type]: 1 },
+          null,
+          { [AsyncErrorAction1.type]: 1 },
+          null
         ]);
       }));
 
       it('should be executing when action is dispatched multiple times', fakeAsync(() => {
         const actionStatus: ActionsExecuting[] = [];
 
-        store.select(actionsExecuting(AsyncAction1)).subscribe(actionsExecuting => {
+        store.select(actionsExecuting([AsyncAction1])).subscribe(actionsExecuting => {
           actionStatus.push(actionsExecuting);
         });
 
         store.dispatch(new AsyncAction1());
-        expect(actionStatus).toEqual([true]);
+        expect(actionStatus).toEqual([null, { [AsyncAction1.type]: 1 }]);
         store.dispatch(new AsyncAction1());
         tick(1);
-        expect(actionStatus).toEqual([true, true, true, false]);
+        expect(actionStatus).toEqual([
+          null,
+          { [AsyncAction1.type]: 1 },
+          { [AsyncAction1.type]: 2 },
+          { [AsyncAction1.type]: 1 },
+          null
+        ]);
       }));
 
       it('should be executing when action is dispatched multiple times (case 2)', fakeAsync(() => {
         const actionStatus: ActionsExecuting[] = [];
 
-        store.select(actionsExecuting(AsyncAction1)).subscribe(actionsExecuting => {
+        store.select(actionsExecuting([AsyncAction1])).subscribe(actionsExecuting => {
           actionStatus.push(actionsExecuting);
         });
 
         store.dispatch(new AsyncAction1());
         store.dispatch(new AsyncAction1());
-        expect(actionStatus).toEqual([true, true]);
+        expect(actionStatus).toEqual([
+          null,
+          { [AsyncAction1.type]: 1 },
+          { [AsyncAction1.type]: 2 }
+        ]);
         tick(1);
-        expect(actionStatus).toEqual([true, true, true, false]);
+        expect(actionStatus).toEqual([
+          null,
+          { [AsyncAction1.type]: 1 },
+          { [AsyncAction1.type]: 2 },
+          { [AsyncAction1.type]: 1 },
+          null
+        ]);
       }));
 
       // describe('nested actions 1', () => {

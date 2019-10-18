@@ -1,7 +1,6 @@
 import { NgxsActionsExecutingModule } from '..';
 
-describe('of-executing', () => {
-
+describe('actions-executing', () => {
   it('should successfully create module', () => {
     const ofExecModule = new NgxsActionsExecutingModule();
 
