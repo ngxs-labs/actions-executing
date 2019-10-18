@@ -1,0 +1,35 @@
+{
+  "$schema": "../node_modules/ng-packagr/package.schema.json",
+  "name": "@ngxs-labs/of-executing",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngxs-labs/of-executing.git"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/ngxs-labs/of-executing#readme",
+  "bugs": {
+    "url": "https://github.com/ngxs-labs/of-executing/issues"
+  },
+  "keywords": [
+    "ngxs",
+    "redux",
+    "store"
+  ],
+  "sideEffects": true,
+  "peerDependencies": {
+    "@angular/core": ">=7.0.0",
+    "@ngxs/store": ">=5.0.0",
+    "rxjs": ">=6.5.2"
+  },
+  "ngPackage": {
+    "lib": {
+      "flatModuleFile": "ngxs-labs-of-executing",
+      "entryFile": "index.ts",
+      "umdModuleIds": {
+        "@ngxs/store": "ngxs-store"
+      }
+    },
+    "dest": "../dist/of-executing"
+  }
+}
