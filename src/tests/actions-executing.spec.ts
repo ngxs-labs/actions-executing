@@ -1,6 +1,6 @@
 import { NgxsActionsExecutingModule, ActionsExecuting, actionsExecuting } from '..';
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { NgxsModule, Store, Actions, State, Action } from '@ngxs/store';
+import { NgxsModule, Store, Actions, State, Action, StateContext } from '@ngxs/store';
 import { of, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -32,6 +32,30 @@ describe('actionsExecuting', () => {
     static type = 'ASYNC ERROR ACTION 1';
   }
 
+  class NestedAsyncAction1 {
+    static type = 'NESTED ASYNC ACTION 1';
+  }
+
+  class NestedAsyncAction2 {
+    static type = 'NESTED ASYNC ACTION 2';
+  }
+
+  class NestedAsyncAction3 {
+    static type = 'NESTED ASYNC ACTION 3';
+  }
+
+  class NestedAsyncAction4 {
+    static type = 'NESTED ASYNC ACTION 4';
+  }
+
+  class NestedAsyncAction5 {
+    static type = 'NESTED ASYNC ACTION 5';
+  }
+
+  class NestedAsyncAction6 {
+    static type = 'NESTED ASYNC ACTION 6';
+  }
+
   @State({
     name: 'test'
   })
@@ -60,9 +84,32 @@ describe('actionsExecuting', () => {
     }
   }
 
+  @State({
+    name: 'nested_actions_1'
+  })
+  class NestedActions1State {
+    @Action(NestedAsyncAction1)
+    nestedAsyncAction1({ dispatch }: StateContext<any>) {
+      return dispatch(new NestedAsyncAction2()).pipe(delay(0));
+    }
+
+    @Action(NestedAsyncAction2)
+    nestedAsyncAction2({ dispatch }: StateContext<any>) {
+      return dispatch(new NestedAsyncAction3()).pipe(delay(0));
+    }
+
+    @Action(NestedAsyncAction3)
+    nestedAsyncAction3() {
+      return of({}).pipe(delay(0));
+    }
+  }
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NgxsModule.forRoot([TestState]), NgxsActionsExecutingModule.forRoot()]
+      imports: [
+        NgxsModule.forRoot([TestState, NestedActions1State]),
+        NgxsActionsExecutingModule.forRoot()
+      ]
     });
 
     store = TestBed.get(Store);
@@ -277,43 +324,67 @@ describe('actionsExecuting', () => {
         ]);
       }));
 
-      // describe('nested actions 1', () => {
-      //   it('should be executing on nested actions', fakeAsync(() => {
-      //     const nestedAction1Status: ActionsExecuting[] = [];
-      //     const nestedAction2Status: ActionsExecuting[] = [];
-      //     const nestedAction3Status: ActionsExecuting[] = [];
+      describe('nested actions 1', () => {
+        it('should be executing on nested actions', fakeAsync(() => {
+          const nestedAction1Status: ActionsExecuting[] = [];
+          const nestedAction2Status: ActionsExecuting[] = [];
+          const nestedAction3Status: ActionsExecuting[] = [];
 
-      //     const combinedActionStatus: ActionsExecuting[] = [];
+          const combinedActionStatus: ActionsExecuting[] = [];
 
-      //     store.select(actionsExecuting(NestedAsyncAction1)).subscribe(actionsExecuting => {
-      //       nestedAction1Status.push(actionsExecuting);
-      //     });
+          store.select(actionsExecuting([NestedAsyncAction1])).subscribe(actionsExecuting => {
+            nestedAction1Status.push(actionsExecuting);
+          });
 
-      //     store.select(actionsExecuting(NestedAsyncAction2)).subscribe(actionsExecuting => {
-      //       nestedAction2Status.push(actionsExecuting);
-      //     });
+          store.select(actionsExecuting([NestedAsyncAction2])).subscribe(actionsExecuting => {
+            nestedAction2Status.push(actionsExecuting);
+          });
 
-      //     store.select(actionsExecuting(NestedAsyncAction3)).subscribe(actionsExecuting => {
-      //       nestedAction3Status.push(actionsExecuting);
-      //     });
+          store.select(actionsExecuting([NestedAsyncAction3])).subscribe(actionsExecuting => {
+            nestedAction3Status.push(actionsExecuting);
+          });
 
-      //     actions
-      //       .pipe(
-      //         ofActionExecuting(NestedAsyncAction1, NestedAsyncAction2, NestedAsyncAction3)
-      //       )
-      //       .subscribe(actionsExecuting => {
-      //         combinedActionStatus.push(actionsExecuting);
-      //       });
+          store
+            .select(actionsExecuting([NestedAsyncAction1, NestedAsyncAction2, NestedAsyncAction3]))
+            .subscribe(actionsExecuting => {
+              combinedActionStatus.push(actionsExecuting);
+            });
 
-      //     store.dispatch(new NestedAsyncAction1());
-      //     tick(1);
-      //     expect(nestedAction1Status).toEqual([true, false]);
-      //     expect(nestedAction2Status).toEqual([true, false]);
-      //     expect(nestedAction3Status).toEqual([true, false]);
+          store.dispatch(new NestedAsyncAction1());
+          tick(1);
+          expect(nestedAction1Status).toEqual([
+            null,
+            { [NestedAsyncAction1.type]: 1 },
+            { [NestedAsyncAction1.type]: 1 },
+            { [NestedAsyncAction1.type]: 1 },
+            { [NestedAsyncAction1.type]: 1 },
+            { [NestedAsyncAction1.type]: 1 },
+            null
+          ]);
+          expect(nestedAction2Status).toEqual([
+            null,
+            { [NestedAsyncAction2.type]: 1 },
+            { [NestedAsyncAction2.type]: 1 },
+            { [NestedAsyncAction2.type]: 1 },
+            null
+          ]);
+          expect(nestedAction3Status).toEqual([null, { [NestedAsyncAction3.type]: 1 }, null]);
 
-      //     expect(combinedActionStatus).toEqual([true, true, true, false]);
-      //   }));
-      // });
+          expect(combinedActionStatus).toEqual([
+            null,
+            { [NestedAsyncAction1.type]: 1 },
+            { [NestedAsyncAction1.type]: 1, [NestedAsyncAction2.type]: 1 },
+            {
+              [NestedAsyncAction1.type]: 1,
+              [NestedAsyncAction2.type]: 1,
+              [NestedAsyncAction3.type]: 1
+            },
+            { [NestedAsyncAction1.type]: 1, [NestedAsyncAction2.type]: 1 },
+            { [NestedAsyncAction1.type]: 1 },
+            null
+          ]);
+        }));
+      });
 
       // describe('nested actions 2', () => {
       //   it('should be executing on nested actions (scenario 1)', fakeAsync(() => {
