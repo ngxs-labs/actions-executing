@@ -1,5 +1,5 @@
 {
-  "name": "actions-executing",
+  "name": "ngxs-actions-executing",
   "version": "0.0.0",
   "repository": {
     "type": "git",
@@ -7,40 +7,12 @@
   },
   "license": "MIT",
   "scripts": {
-    "start-test": "start-server-and-test",
-    "ng": "ng",
-    "ts-node": "ts-node",
-    "// - APPS": "Run Apps in dev and with packaged modules",
-    "serve:integration": "ng serve --prod --project integration",
-    "serve:integration:static": "angular-http-server --path dist -p 4200 --silent",
-    "serve:integration:ssr": "yarn ts-node integration/server",
-    "build": "ng build",
-    "build:integration": "ng run integration:build:production",
-    "build:integration:ssr": "ng run integration:server:production",
-    "// - PROVISIONING": "Provisioning scripts",
-    "actions-executing:lint": "ng lint actions-executing",
-    "actions-executing:test": "ng test --runInBand",
-    "actions-executing:build": "ts-node ./tools/build && ts-node ./tools/copy-readme",
-    "// - E2E": "E2E testing #requires yarn build:integration",
-    "cy:open": "cypress open --config integrationFolder=cypress/integration",
-    "cy:open:ssr": "cypress open --config integrationFolder=cypress/ssr",
-    "cy:run": "cypress run --config integrationFolder=cypress/integration",
-    "cy:run:ssr": "cypress run --config integrationFolder=cypress/ssr",
-    "cy:run:chrome": "yarn cy:run --browser chrome",
-    "cy:run:chromium": "yarn cy:run --browser chromium",
-    "e2e": "start-test serve:integration 4200 cy:open",
-    "e2e:chrome": "start-test serve:integration 4200 cy:run:chrome",
-    "e2e:ssr": "start-test serve:integration:ssr 4200 cy:open:ssr",
-    "e2e:chromium": "start-test serve:integration 4200 cy:run:chromium",
-    "// - CI": "CI Testing",
-    "test:ci": "ng test --project actions-executing --colors --runInBand",
-    "test:ci:e2e": "yarn start-test serve:integration:static 4200 cy:run",
-    "test:ci:integration": "yarn build:integration",
-    "test:ci:integration:ssr": "yarn build:integration:ssr && yarn start-test serve:integration:ssr 4200 cy:run:ssr",
-    "// - UTILS": "Utility scripts",
-    "bump": "ts-node ./tools/bump",
-    "create-project": "ts-node ./tools/create-project",
-    "format": "prettier {src,integration}/**/*.ts --write"
+    "start": "ng serve",
+    "build": "ng build ngxs-actions-executing && ts-node --project tsconfig.tools.json ./tools/copy-readme",
+    "test": "jest --config ./jest.app.config.js",
+    "test:ci": "jest --config ./jest.app.config.js --coverage",
+    "format": "prettier --write \"{src,integration}/**/*.{ts,json,html}\"",
+    "lint": "tslint '{src,integration}/**/*.ts' --project tsconfig.json"
   },
   "private": true,
   "devDependencies": {
@@ -88,27 +60,5 @@
     "tslint-sonarts": "^1.9.0",
     "typescript": "^3.5.3",
     "zone.js": "^0.10.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "*.ts": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "prettier": {
-    "semi": true,
-    "endOfLine": "lf",
-    "tabWidth": 2,
-    "printWidth": 100,
-    "trailingComma": "none",
-    "bracketSpacing": true,
-    "arrowParens": "avoid",
-    "singleQuote": true
   }
 }
