@@ -7,3 +7,5 @@ node_modules
 coverage
 yarn-error.log
 .cache
+package-lock.json
+*.iml
