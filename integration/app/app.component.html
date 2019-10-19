@@ -1,0 +1,18 @@
+Examples:
+<a class="link"
+   [routerLink]="['first']"> Single Action</a>
+<a class="link"
+   [routerLink]="['second']"> Multiple Actions </a>
+
+<br /><br />
+
+<div class="container">
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="panel">
+    <h2>Store:</h2>
+    <pre>{{ snapshot | async | json }}</pre>
+  </div>
+</div>
