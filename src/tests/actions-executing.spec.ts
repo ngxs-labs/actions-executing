@@ -8,51 +8,51 @@ describe('actionsExecuting', () => {
   let store: Store;
 
   class Action1 {
-    static type = 'ACTION 1';
+    public static type = 'ACTION 1';
   }
 
   class Action2 {
-    static type = 'ACTION 2';
+    public static type = 'ACTION 2';
   }
 
   class ErrorAction1 {
-    static type = 'ERROR ACTION 1';
+    public static type = 'ERROR ACTION 1';
   }
 
   class AsyncAction1 {
-    static type = 'ASYNC ACTION 1';
+    public static type = 'ASYNC ACTION 1';
   }
 
   class AsyncAction2 {
-    static type = 'ASYNC ACTION 2';
+    public static type = 'ASYNC ACTION 2';
   }
 
   class AsyncErrorAction1 {
-    static type = 'ASYNC ERROR ACTION 1';
+    public static type = 'ASYNC ERROR ACTION 1';
   }
 
   class NestedAsyncAction1 {
-    static type = 'NESTED ASYNC ACTION 1';
+    public static type = 'NESTED ASYNC ACTION 1';
   }
 
   class NestedAsyncAction2 {
-    static type = 'NESTED ASYNC ACTION 2';
+    public static type = 'NESTED ASYNC ACTION 2';
   }
 
   class NestedAsyncAction3 {
-    static type = 'NESTED ASYNC ACTION 3';
+    public static type = 'NESTED ASYNC ACTION 3';
   }
 
   class NestedAsyncAction4 {
-    static type = 'NESTED ASYNC ACTION 4';
+    public static type = 'NESTED ASYNC ACTION 4';
   }
 
   class NestedAsyncAction5 {
-    static type = 'NESTED ASYNC ACTION 5';
+    public static type = 'NESTED ASYNC ACTION 5';
   }
 
   class NestedAsyncAction6 {
-    static type = 'NESTED ASYNC ACTION 6';
+    public static type = 'NESTED ASYNC ACTION 6';
   }
 
   @State({
@@ -60,25 +60,25 @@ describe('actionsExecuting', () => {
   })
   class TestState {
     @Action([Action1])
-    action1() { }
+    public action1() { }
 
     @Action([AsyncAction1])
-    asyncAction1() {
+    public asyncAction1() {
       return of({}).pipe(delay(0));
     }
 
     @Action([AsyncAction2])
-    asyncAction2() {
+    public asyncAction2() {
       return of({}).pipe(delay(0));
     }
 
     @Action(AsyncErrorAction1)
-    asyncError() {
+    public asyncError() {
       return throwError(new Error('this is a test error')).pipe(delay(0));
     }
 
     @Action(ErrorAction1)
-    onError() {
+    public onError() {
       return throwError(new Error('this is a test error'));
     }
   }
@@ -88,17 +88,17 @@ describe('actionsExecuting', () => {
   })
   class NestedActions1State {
     @Action(NestedAsyncAction1)
-    nestedAsyncAction1({ dispatch }: StateContext<any>) {
+    public nestedAsyncAction1({ dispatch }: StateContext<any>) {
       return dispatch(new NestedAsyncAction2()).pipe(delay(0));
     }
 
     @Action(NestedAsyncAction2)
-    nestedAsyncAction2({ dispatch }: StateContext<any>) {
+    public nestedAsyncAction2({ dispatch }: StateContext<any>) {
       return dispatch(new NestedAsyncAction3()).pipe(delay(0));
     }
 
     @Action(NestedAsyncAction3)
-    nestedAsyncAction3() {
+    public nestedAsyncAction3() {
       return of({}).pipe(delay(0));
     }
   }
@@ -108,17 +108,17 @@ describe('actionsExecuting', () => {
   })
   class NestedActions2State {
     @Action([NestedAsyncAction4, NestedAsyncAction5])
-    combinedAction({ dispatch }: StateContext<any>) {
+    public combinedAction({ dispatch }: StateContext<any>) {
       return dispatch(new NestedAsyncAction6()).pipe(delay(0));
     }
 
     @Action(NestedAsyncAction5)
-    nestedAsyncAction5() {
+    public nestedAsyncAction5() {
       return of({}).pipe(delay(100));
     }
 
     @Action(NestedAsyncAction6)
-    nestedAsyncAction6() {
+    public nestedAsyncAction6() {
       return of({}).pipe(delay(0));
     }
   }
