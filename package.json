@@ -15,6 +15,22 @@
     "lint": "tslint '{src,integration}/**/*.ts' --project tsconfig.json"
   },
   "private": true,
+  "dependencies": {
+    "@angular/animations": "^8.2.11",
+    "@angular/common": "^8.2.11",
+    "@angular/compiler": "^8.2.11",
+    "@angular/core": "^8.2.11",
+    "@angular/forms": "^8.2.11",
+    "@angular/platform-browser": "^8.2.11",
+    "@angular/platform-browser-dynamic": "^8.2.11",
+    "@angular/router": "^8.2.11",
+    "@ngxs/store": "^3.5.0",
+    "@ngxs/logger-plugin": "^3.5.1",
+    "core-js": "^3.3.2",
+    "rxjs": "^6.5.3",
+    "tslib": "^1.10.0",
+    "zone.js": "^0.10.2"
+  },
   "devDependencies": {
     "@angular-builders/jest": "^8.2.0",
     "@angular-devkit/build-angular": "^0.803.1",
