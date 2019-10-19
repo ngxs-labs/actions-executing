@@ -3,49 +3,12 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "actions-executing": {
-      "root": "",
-      "sourceRoot": "src",
-      "projectType": "library",
-      "prefix": "actions-executing",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "src/tsconfig.lib.json",
-            "project": "src/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "src/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-builders/jest:run",
-          "options": {
-            "no-cache": false
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/tsconfig.lib.json",
-              "tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "integration": {
-      "root": "integration",
-      "sourceRoot": ".",
+      "root": "",
+      "sourceRoot": "integration",
       "projectType": "application",
       "prefix": "app",
+      "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -55,17 +18,23 @@
             "main": "integration/main.ts",
             "polyfills": "integration/polyfills.ts",
             "tsConfig": "integration/tsconfig.app.json",
-            "preserveSymlinks": true,
             "assets": [
+              "integration/favicon.ico",
               "integration/assets"
-            ]
+            ],
+            "styles": [
+              "integration/styles.scss"
+            ],
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "integration/environments/environment.ts",
-                "with": "integration/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "integration/environments/environment.ts",
+                  "with": "integration/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -74,12 +43,7 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [{
-                "type": "initial",
-                "maximumWarning": "2mb",
-                "maximumError": "5mb"
-              }]
+              "buildOptimizer": true
             }
           }
         },
@@ -93,30 +57,29 @@
               "browserTarget": "integration:build:production"
             }
           }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
+        }
+      }
+    },
+    "ngxs-actions-executing": {
+      "root": "src",
+      "sourceRoot": "src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "outputPath": "dist-integration-server",
-            "main": "integration/main.server.ts",
-            "tsConfig": "integration/tsconfig.server.json"
+            "tsConfig": "src/tsconfig.lib.json",
+            "project": "src/ng-package.json"
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "integration/environments/environment.ts",
-                "with": "integration/environments/environment.prod.ts"
-              }]
+              "project": "src/ng-package.prod.json"
             }
-          }
-        },
-        "test": {
-          "builder": "@angular-builders/jest:run",
-          "options": {
-            "no-cache": false
           }
         }
       }
     }
-  }
+  },
+  "defaultProject": "integration"
 }
