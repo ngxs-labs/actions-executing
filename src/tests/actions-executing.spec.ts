@@ -1,12 +1,11 @@
 import { NgxsActionsExecutingModule, ActionsExecuting, actionsExecuting } from '..';
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { NgxsModule, Store, Actions, State, Action, StateContext } from '@ngxs/store';
+import { NgxsModule, Store, State, Action, StateContext } from '@ngxs/store';
 import { of, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 describe('actionsExecuting', () => {
   let store: Store;
-  let actions: Actions;
 
   class Action1 {
     static type = 'ACTION 1';
@@ -61,7 +60,7 @@ describe('actionsExecuting', () => {
   })
   class TestState {
     @Action([Action1])
-    action1() {}
+    action1() { }
 
     @Action([AsyncAction1])
     asyncAction1() {
@@ -133,7 +132,6 @@ describe('actionsExecuting', () => {
     });
 
     store = TestBed.get(Store);
-    actions = TestBed.get(Actions);
   });
 
   describe('Single Action', () => {
