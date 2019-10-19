@@ -4,14 +4,13 @@ import { RouterModule } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
 
 import { SecondComponent } from './second.component';
-import { TodoState } from './todo/todo.state';
 
 @NgModule({
     declarations: [SecondComponent],
     imports: [
         CommonModule,
-        NgxsModule.forFeature([TodoState]),
+        NgxsModule.forFeature([]),
         RouterModule.forChild([{ path: '', component: SecondComponent }])
     ]
 })
-export class SecondModule {}
+export class SecondModule { }

@@ -2,20 +2,20 @@
 
 <br />
 
-counter.values$ = {{ counter.values$ | async }} <br />
-counter.state$ = {{ counter.state$ | async | json }} <br />
+count = {{ count$ | async }} <br />
 <br />
-
-<b>form</b>
-<br />ngModel
-
-<input type="text" [ngModel]="counter.values$ | async" (ngModelChange)="counter.setValueFromInput($event)" />
 
 <br />actions
 
-<button (click)="counter.increment()">increment</button>
-<button (click)="counter.decrement()">decrement</button>
-<button (click)="counter.reset()">reset</button>
+<button (click)="increment()">increment</button>
+<button (click)="decrement()">decrement</button>
+
+
+
+<br />
+<br />
+
+incrementExecuting = {{ incrementExecuting$ | async | json }} <br />
 
 <br />
 <br />

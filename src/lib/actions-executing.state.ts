@@ -21,7 +21,7 @@ export class ActionsExecutingState implements NgxsOnInit, OnDestroy {
 
     }
 
-    ngxsOnInit({ patchState, getState }: StateContext<any>) {
+    public ngxsOnInit({ patchState, getState }: StateContext<any>) {
 
         this._sub = this.actions$.pipe(
             tap((actionContext: any) => {
@@ -46,7 +46,7 @@ export class ActionsExecutingState implements NgxsOnInit, OnDestroy {
 
     }
 
-    ngOnDestroy() {
+    public ngOnDestroy() {
         this._sub.unsubscribe();
     }
 

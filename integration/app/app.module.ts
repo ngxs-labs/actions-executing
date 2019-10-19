@@ -1,7 +1,7 @@
-import { NgxsModule, ɵn as StateFactory, ɵq as StateContextFactory } from '@ngxs/store';
+import { NgxsModule } from '@ngxs/store';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgxsDataPluginModule } from '@ngxs-labs/data';
+import { NgxsActionsExecutingModule } from '@ngxs-labs/actions-executing';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -25,10 +25,10 @@ import { FormsModule } from '@angular/forms';
                     path: 'first',
                     loadChildren: () => import('./examples/first/first.module').then((m) => m.FirstModule)
                 },
-                {
-                    path: 'second',
-                    loadChildren: () => import('./examples/second/second.module').then((m) => m.SecondModule)
-                }
+                // {
+                //     path: 'second',
+                //     loadChildren: () => import('./examples/second/second.module').then((m) => m.SecondModule)
+                // }
             ],
             { useHash: true }
         ),
@@ -36,9 +36,9 @@ import { FormsModule } from '@angular/forms';
             developmentMode: !environment.production
         }),
         NgxsLoggerPluginModule.forRoot(),
-        NgxsDataPluginModule.forRoot({ factory: StateFactory, context: StateContextFactory })
+        NgxsActionsExecutingModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

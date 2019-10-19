@@ -1,32 +1,34 @@
-import { action, Immutable, NgxsDataRepository, query, StateRepository } from '@ngxs-labs/data';
-import { Injectable } from '@angular/core';
-import { State } from '@ngxs/store';
-import { Observable } from 'rxjs';
-
+import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { CountModel } from './count.model';
+import { Increment, Decrement } from './count.actions';
+import { of } from 'rxjs';
+import { tap, delay } from 'rxjs/operators';
 
-@Injectable()
-@StateRepository()
 @State<CountModel>({
     name: 'count',
     defaults: { val: 0 }
 })
-export class CountState extends NgxsDataRepository<CountModel> {
-    @query<CountModel, number>((state) => state.val)
-    public values$: Observable<number>;
+export class CountState {
 
-    @action()
-    public increment(): Immutable<CountModel> {
-        return this.ctx.setState((state: Immutable<CountModel>) => ({ val: state.val + 1 }));
+    @Selector() public static val(state: CountModel) { return state.val; }
+
+    @Action([Increment])
+    public increment({ patchState, getState }: StateContext<CountModel>) {
+        return of().pipe(
+            delay(1000),
+            tap(_ => {
+                patchState({ val: getState().val + 1 });
+            })
+        );
     }
 
-    @action()
-    public decrement(): Immutable<CountModel> {
-        return this.setState((state: Immutable<CountModel>) => ({ val: state.val - 1 }));
-    }
-
-    @action({ async: true, debounce: 300 })
-    public setValueFromInput(val: string | number): void {
-        this.ctx.setState({ val: parseFloat(val as string) || 0 });
+    @Action([Decrement])
+    public decrement({ patchState, getState }: StateContext<CountModel>) {
+        return of().pipe(
+            delay(1000),
+            tap(_ => {
+                patchState({ val: getState().val - 1 });
+            })
+        );
     }
 }

@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TodoState } from './todo/todo.state';
 
 @Component({
     selector: 'first',
@@ -7,5 +6,5 @@ import { TodoState } from './todo/todo.state';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SecondComponent {
-    constructor(public todo: TodoState) {}
+
 }
