@@ -3,17 +3,19 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
 
-import { FirstComponent } from './first.component';
-import { CountState } from './count/count.state';
+import { SingleComponent } from './single.component';
 import { FormsModule } from '@angular/forms';
+import { ZooState } from '../states/zoo/zoo.state';
 
 @NgModule({
-    declarations: [FirstComponent],
+    declarations: [
+        SingleComponent
+    ],
     imports: [
         CommonModule,
         FormsModule,
-        NgxsModule.forFeature([CountState]),
-        RouterModule.forChild([{ path: '', component: FirstComponent }])
+        NgxsModule.forFeature([ZooState]),
+        RouterModule.forChild([{ path: '', component: SingleComponent }])
     ]
 })
-export class FirstModule {}
+export class FirstModule { }

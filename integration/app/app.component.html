@@ -1,8 +1,8 @@
 Examples:
 <a class="link"
-   [routerLink]="['first']"> Single Action</a>
+   [routerLink]="['single']"> Single Action</a>
 <a class="link"
-   [routerLink]="['second']"> Multiple Actions </a>
+   [routerLink]="['multiple']"> Multiple Actions </a>
 
 <br /><br />
 
@@ -13,6 +13,6 @@ Examples:
 
   <div class="panel">
     <h2>Store:</h2>
-    <pre>{{ snapshot | async | json }}</pre>
+    <pre>{{ store$ | async | json }}</pre>
   </div>
 </div>

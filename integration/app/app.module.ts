@@ -18,25 +18,24 @@ import { FormsModule } from '@angular/forms';
             [
                 {
                     path: '',
-                    redirectTo: 'first',
+                    redirectTo: 'single',
                     pathMatch: 'full'
                 },
                 {
-                    path: 'first',
-                    loadChildren: () => import('./examples/first/first.module').then((m) => m.FirstModule)
+                    path: 'single',
+                    loadChildren: () => import('./examples/single/single.module').then((m) => m.FirstModule)
                 },
-                // {
-                //     path: 'second',
-                //     loadChildren: () => import('./examples/second/second.module').then((m) => m.SecondModule)
-                // }
-            ],
-            { useHash: true }
+                {
+                    path: 'multiple',
+                    loadChildren: () => import('./examples/multiple/multiple.module').then((m) => m.SecondModule)
+                }
+            ]
         ),
         NgxsModule.forRoot([], {
             developmentMode: !environment.production
         }),
         NgxsLoggerPluginModule.forRoot(),
-        NgxsActionsExecutingModule,
+        NgxsActionsExecutingModule.forRoot(),
     ],
     providers: [],
     bootstrap: [AppComponent]

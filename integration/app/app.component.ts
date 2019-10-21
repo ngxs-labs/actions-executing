@@ -8,6 +8,10 @@ import { Observable } from 'rxjs';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    public snapshot: Observable<unknown> = this.store.select((state) => state);
-    constructor(private readonly store: Store) {}
+
+    public store$: Observable<unknown> = this.store.select((state) => state);
+
+    constructor(
+        private store: Store
+    ) { }
 }

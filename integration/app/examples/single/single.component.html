@@ -1,0 +1,31 @@
+<br /><b>states</b>
+
+<br />
+zoo = {{ zoo$ | async | json }} <br />
+<br />
+
+<br />actions
+
+<button [disabled]="addPandaExecuting$ | async"
+        (click)="addPanda()">add panda</button>
+
+<button [disabled]="addBearExecuting$ | async"
+        (click)="addBear()">add bear</button>
+
+<br>
+<span *ngIf="addPandaExecuting$ | async">
+  Adding Panda...
+</span>
+<br>
+<span *ngIf="addBearExecuting$ | async">
+  Adding Bear...
+</span>
+
+<br />
+<br />
+
+addPandaExecuting$ = {{ addPandaExecuting$ | async | json }} <br />
+addBearExecuting$ = {{ addBearExecuting$ | async | json }} <br />
+
+<br />
+<br />
