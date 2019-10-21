@@ -68,12 +68,28 @@ then you can disable a button or display a loading indicator very easily
 ```html
 
 <button [disabled]="myActionIsExecuting$ | async"
-        (click)="doSomething()"> 
-  My Action 
+        (click)="doSomething()">
+  My Action
 </button>
 
 <span *ngIf="myActionIsExecuting$ | async">
   Loading...
 </span>
 
+```
+
+## More examples
+
+`actionsExecuting` selector returns the type `ActionsExecuting`
+
+```ts
+type ActionsExecuting = { [action: string]: number } | null;
+```
+
+This allows you to know which actions and how many of them are being executed at any given time.
+
+You can also pass multiple actions to the selector and this way you'll receive updates when any of those actions are executing.
+
+```ts
+@Select(actionsExecuting([Action1, Action2])) multipleActions$: Observable<ActionsExecuting>;
 ```
