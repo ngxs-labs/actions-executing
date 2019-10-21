@@ -18,7 +18,7 @@ export class ZooState {
 
     @Action([AddPanda])
     public addPanda({ patchState, getState }: StateContext<ZooStateModel>) {
-        return of().pipe(
+        return of({}).pipe(
             delay(1000),
             tap(_ => {
                 patchState({ pandas: getState().pandas.concat('🐼') });
@@ -28,7 +28,7 @@ export class ZooState {
 
     @Action([AddBear])
     public addBear({ patchState, getState }: StateContext<ZooStateModel>) {
-        return of().pipe(
+        return of({}).pipe(
             delay(2000),
             tap(_ => {
                 patchState({ bears: getState().bears.concat('🐻') });
@@ -37,7 +37,7 @@ export class ZooState {
     }
 
     @Action([AddPandaAndBear])
-    public addLion({ patchState, getState, dispatch }: StateContext<ZooStateModel>) {
+    public addPandaAndBear({ patchState, getState, dispatch }: StateContext<ZooStateModel>) {
         return dispatch([new AddBear(), new AddPanda()]);
     }
 }

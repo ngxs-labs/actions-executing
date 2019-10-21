@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ZooState } from './examples/states/zoo/zoo.state';
 
 @NgModule({
     declarations: [AppComponent],
@@ -31,7 +32,7 @@ import { FormsModule } from '@angular/forms';
                 }
             ]
         ),
-        NgxsModule.forRoot([], {
+        NgxsModule.forRoot([ZooState], {
             developmentMode: !environment.production
         }),
         NgxsLoggerPluginModule.forRoot(),
