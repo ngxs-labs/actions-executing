@@ -24,7 +24,8 @@
             "tsConfig": "integration/tsconfig.app.json",
             "assets": [
               "integration/favicon.ico",
-              "integration/assets"
+              "integration/assets",
+              "integration/_redirects"
             ],
             "styles": [
               "integration/styles.scss"
