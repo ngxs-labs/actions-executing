@@ -1,31 +1,34 @@
-<br /><b>states</b>
+<h2> Zoo State </h2>
+<p>
+  {{ zoo$ | async | json }}
+</p>
 
-<br />
-zoo = {{ zoo$ | async | json }} <br />
-<br />
+<h3>
+  Dispatch Action
+</h3>
 
-<br />actions
+<button class="btn btn-primary mr-3" [disabled]="addPandaExecuting$ | async" (click)="addPanda()">add panda</button>
 
-<button [disabled]="addPandaExecuting$ | async"
-        (click)="addPanda()">add panda</button>
+<button class="btn btn-primary mr-3" (click)="addBear()">add bear</button>
 
-<button [disabled]="addBearExecuting$ | async"
-        (click)="addBear()">add bear</button>
+<div *ngIf="addPandaExecuting$ | async" class="d-flex align-items-center my-3">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <span class="ml-1"> Adding Panda... </span>
+</div>
 
-<br>
-<span *ngIf="addPandaExecuting$ | async">
-  Adding Panda...
-</span>
-<br>
-<span *ngIf="addBearExecuting$ | async">
-  Adding Bear...
-</span>
+<div *ngIf="addBearExecuting$ | async" class="d-flex align-items-center my-3">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
 
-<br />
-<br />
-
-addPandaExecuting$ = {{ addPandaExecuting$ | async | json }} <br />
-addBearExecuting$ = {{ addBearExecuting$ | async | json }} <br />
-
-<br />
-<br />
+<div class="my-3">
+  <div>
+    addPandaExecuting$ = {{ addPandaExecuting$ | async | json }} <br />
+  </div>
+  <div>
+    addBearExecuting$ = {{ addBearExecuting$ | async | json }} <br />
+  </div>
+</div>
