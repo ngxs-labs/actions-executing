@@ -4,5 +4,10 @@
   "peerDependencies": {
     "@ngxs/store": ">=3.4.0 <4.0.0"
   },
-  "homepage": "https://github.com/ngxs-labs/actions-executing#readme"
+  "homepage": "https://github.com/ngxs-labs/actions-executing#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngxs-labs/actions-executing.git"
+  },
+  "license": "MIT"
 }

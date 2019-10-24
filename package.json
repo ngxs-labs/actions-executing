@@ -1,10 +1,5 @@
 {
   "name": "ngxs-actions-executing",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ngxs-labs/actions-executing.git"
-  },
-  "license": "MIT",
   "scripts": {
     "start": "ng serve",
     "build": "ng build ngxs-actions-executing && ts-node --project tsconfig.tools.json ./tools/copy-readme",
@@ -13,7 +8,6 @@
     "format": "prettier --write \"{src,integration}/**/*.{ts,json,html}\"",
     "lint": "tslint '{src,integration}/**/*.ts' --project tsconfig.json"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^8.2.11",
     "@angular/common": "^8.2.11",
@@ -31,7 +25,6 @@
     "zone.js": "^0.10.2"
   },
   "devDependencies": {
-    "@angular-builders/jest": "^8.2.0",
     "@angular-devkit/build-angular": "^0.803.1",
     "@angular-devkit/build-ng-packagr": "^0.803.1",
     "@angular/animations": "^8.2.3",
