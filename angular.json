@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist-integration",
+            "outputPath": "dist/integration",
             "index": "integration/index.html",
             "main": "integration/main.ts",
             "polyfills": "integration/polyfills.ts",
