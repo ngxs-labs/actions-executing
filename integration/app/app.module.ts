@@ -30,8 +30,7 @@ import { ZooState } from './examples/states/zoo/zoo.state';
                     path: 'multiple',
                     loadChildren: () => import('./examples/multiple/multiple.module').then((m) => m.SecondModule)
                 }
-            ],
-            { useHash: true }
+            ]
         ),
         NgxsModule.forRoot([ZooState], {
             developmentMode: !environment.production
