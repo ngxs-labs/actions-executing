@@ -6,6 +6,10 @@
 
 # NGXS Actions Executing
 
+## Demo
+
+[Link](https://relaxed-wright-ebefdf.netlify.com)
+
 ## Description
 
 This plugin allows you to easily know if an action is being executed and control UI elements or control flow of your code to execute.
