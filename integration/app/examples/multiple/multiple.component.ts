@@ -14,7 +14,7 @@ import { ZooStateModel } from '../states/zoo/zoo.model';
 export class MultipleComponent {
     @Select(actionsExecuting([AddPanda])) public addPandaExecuting$: Observable<ActionsExecuting>;
     @Select(actionsExecuting([AddBear])) public addBearExecuting$: Observable<ActionsExecuting>;
-    @Select(actionsExecuting([AddPanda, AddBear])) public addPandaAndAddBearExecuting$: Observable<ActionsExecuting>;
+    @Select(actionsExecuting([AddPanda, AddBear])) public addPandaOrAddBearExecuting$: Observable<ActionsExecuting>;
     @Select(ZooState) public zoo$: Observable<ZooStateModel>;
 
     constructor(
