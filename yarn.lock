@@ -973,7 +973,7 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commitlint/cli@^8.1.0":
+"@commitlint/cli@^8.2.0":
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-8.2.0.tgz#fbf9969e04e2162d985eaa644fdad6ce807aadb6"
   integrity sha512-8fJ5pmytc38yw2QWbTTJmXLfSiWPwMkHH4govo9zJ/+ERPBF2jvlxD/dQvk24ezcizjKc6LFka2edYC4OQ+Dgw==
@@ -1001,6 +1001,11 @@
   integrity sha512-N1MDHoYwTlWtQwXbDFAvu3pMS0encb0QR29LfEqvR1+2DV2SrdAfCEIX9Wi3DgEo2Ra5uKDDHhYbMuQWV5Jvyg==
   dependencies:
     "@commitlint/config-angular-type-enum" "^8.2.0"
+
+"@commitlint/config-conventional@^8.2.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-8.2.0.tgz#886a5538e3708e017ec2871e0cbce00f635d3102"
+  integrity sha512-HuwlHQ3DyVhpK9GHgTMhJXD8Zp8PGIQVpQGYh/iTrEU6TVxdRC61BxIDZvfWatCaiG617Z/U8maRAFrqFM4TqA==
 
 "@commitlint/ensure@^8.2.0":
   version "8.2.0"
@@ -5166,7 +5171,7 @@ humanize-ms@^1.2.1:
   dependencies:
     ms "^2.0.0"
 
-husky@^3.0.4:
+husky@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/husky/-/husky-3.1.0.tgz#5faad520ab860582ed94f0c1a77f0f04c90b57c0"
   integrity sha512-FJkPoHHB+6s4a+jwPqBudBDvYZsoQW5/HBuMSehC8qDiCe50kpcxeqFoDSlow+9I6wg47YxBoT3WxaURlrDIIQ==
