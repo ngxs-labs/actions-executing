@@ -3,17 +3,12 @@ import { NgxsModule } from '@ngxs/store';
 import { ActionsExecutingState } from './actions-executing.state';
 
 @NgModule({
-  imports: [
-    NgxsModule.forFeature([
-      ActionsExecutingState
-    ])
-  ]
+    imports: [NgxsModule.forFeature([ActionsExecutingState])]
 })
 export class NgxsActionsExecutingModule {
-
-  public static forRoot(): ModuleWithProviders<NgxsActionsExecutingModule> {
-    return {
-      ngModule: NgxsActionsExecutingModule
-    };
-  }
+    public static forRoot(): ModuleWithProviders<NgxsActionsExecutingModule> {
+        return {
+            ngModule: NgxsActionsExecutingModule
+        };
+    }
 }

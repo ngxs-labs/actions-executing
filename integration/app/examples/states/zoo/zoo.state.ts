@@ -12,15 +12,18 @@ import { tap, delay } from 'rxjs/operators';
     }
 })
 export class ZooState {
-
-    @Selector() public static pandas(state: ZooStateModel) { return state.pandas; }
-    @Selector() public static bears(state: ZooStateModel) { return state.bears; }
+    @Selector() public static pandas(state: ZooStateModel) {
+        return state.pandas;
+    }
+    @Selector() public static bears(state: ZooStateModel) {
+        return state.bears;
+    }
 
     @Action([AddPanda])
     public addPanda({ patchState, getState }: StateContext<ZooStateModel>) {
         return of({}).pipe(
             delay(1000),
-            tap(_ => {
+            tap((_) => {
                 patchState({ pandas: getState().pandas.concat('🐼') });
             })
         );
@@ -30,7 +33,7 @@ export class ZooState {
     public addBear({ patchState, getState }: StateContext<ZooStateModel>) {
         return of({}).pipe(
             delay(2000),
-            tap(_ => {
+            tap((_) => {
                 patchState({ bears: getState().bears.concat('🐻') });
             })
         );

@@ -1,20 +1,20 @@
 <ul class="nav nav-tabs my-3">
-  <li class="nav-item">
-    <a class="nav-link" [routerLink]="['single']" routerLinkActive="active">Single Action</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" [routerLink]="['multiple']" routerLinkActive="active">Multiple Actions</a>
-  </li>
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="['single']" routerLinkActive="active">Single Action</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="['multiple']" routerLinkActive="active">Multiple Actions</a>
+    </li>
 </ul>
 <div class="container">
-  <div class="row">
-    <div class="col-8">
-      <router-outlet></router-outlet>
-    </div>
+    <div class="row">
+        <div class="col-8">
+            <router-outlet></router-outlet>
+        </div>
 
-    <div class="col-4">
-      <h2>Store:</h2>
-      <pre>{{ store$ | async | json }}</pre>
+        <div class="col-4">
+            <h2>Store:</h2>
+            <pre>{{ store$ | async | json }}</pre>
+        </div>
     </div>
-  </div>
 </div>

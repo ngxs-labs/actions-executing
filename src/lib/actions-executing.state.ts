@@ -9,46 +9,39 @@ export interface ActionsExecutingStateModel {
 }
 
 @State<ActionsExecutingStateModel>({
-    name: 'ActionsExecuting',
+    name: 'ActionsExecuting'
 })
 export class ActionsExecutingState implements NgxsOnInit, OnDestroy {
-
     private _sub: Subscription = new Subscription();
 
-    constructor(
-        private actions$: Actions
-    ) {
-
-    }
+    constructor(private actions$: Actions) {}
 
     public ngxsOnInit({ patchState, getState }: StateContext<any>) {
+        this._sub = this.actions$
+            .pipe(
+                tap((actionContext: any) => {
+                    const actionType = getActionTypeFromInstance(actionContext.action);
+                    if (!actionType) {
+                        return;
+                    }
 
-        this._sub = this.actions$.pipe(
-            tap((actionContext: any) => {
-                const actionType = getActionTypeFromInstance(actionContext.action);
-                if (!actionType) {
-                    return;
-                }
+                    let count = getState()[actionType] || 0;
 
-                let count = getState()[actionType] || 0;
+                    if (actionContext.status === ActionStatus.Dispatched) {
+                        count++;
+                    } else {
+                        count--;
+                    }
 
-                if (actionContext.status === ActionStatus.Dispatched) {
-                    count++;
-                } else {
-                    count--;
-                }
-
-                patchState({
-                    [actionType]: count
-                });
-            })
-        ).subscribe();
-
+                    patchState({
+                        [actionType]: count
+                    });
+                })
+            )
+            .subscribe();
     }
 
     public ngOnDestroy() {
         this._sub.unsubscribe();
     }
-
-
 }

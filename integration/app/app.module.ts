@@ -15,30 +15,28 @@ import { ZooState } from './examples/states/zoo/zoo.state';
     imports: [
         BrowserModule,
         FormsModule,
-        RouterModule.forRoot(
-            [
-                {
-                    path: '',
-                    redirectTo: 'single',
-                    pathMatch: 'full'
-                },
-                {
-                    path: 'single',
-                    loadChildren: () => import('./examples/single/single.module').then((m) => m.FirstModule)
-                },
-                {
-                    path: 'multiple',
-                    loadChildren: () => import('./examples/multiple/multiple.module').then((m) => m.SecondModule)
-                }
-            ]
-        ),
+        RouterModule.forRoot([
+            {
+                path: '',
+                redirectTo: 'single',
+                pathMatch: 'full'
+            },
+            {
+                path: 'single',
+                loadChildren: () => import('./examples/single/single.module').then((m) => m.FirstModule)
+            },
+            {
+                path: 'multiple',
+                loadChildren: () => import('./examples/multiple/multiple.module').then((m) => m.SecondModule)
+            }
+        ]),
         NgxsModule.forRoot([ZooState], {
             developmentMode: !environment.production
         }),
         NgxsLoggerPluginModule.forRoot(),
-        NgxsActionsExecutingModule.forRoot(),
+        NgxsActionsExecutingModule.forRoot()
     ],
     providers: [],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

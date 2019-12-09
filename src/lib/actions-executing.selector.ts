@@ -20,5 +20,6 @@ export function actionsExecuting(actionTypes: any[]) {
 
                 return acc;
             }, null);
-        });
+        }
+    );
 }

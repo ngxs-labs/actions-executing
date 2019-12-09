@@ -4,12 +4,7 @@ import { RouterModule } from '@angular/router';
 import { MultipleComponent } from './multiple.component';
 
 @NgModule({
-    declarations: [
-        MultipleComponent
-    ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild([{ path: '', component: MultipleComponent }])
-    ]
+    declarations: [MultipleComponent],
+    imports: [CommonModule, RouterModule.forChild([{ path: '', component: MultipleComponent }])]
 })
-export class SecondModule { }
+export class SecondModule {}

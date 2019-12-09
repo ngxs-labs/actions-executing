@@ -5,13 +5,7 @@ import { SingleComponent } from './single.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-    declarations: [
-        SingleComponent
-    ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        RouterModule.forChild([{ path: '', component: SingleComponent }])
-    ]
+    declarations: [SingleComponent],
+    imports: [CommonModule, FormsModule, RouterModule.forChild([{ path: '', component: SingleComponent }])]
 })
-export class FirstModule { }
+export class FirstModule {}

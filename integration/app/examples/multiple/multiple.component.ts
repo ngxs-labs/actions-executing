@@ -17,10 +17,7 @@ export class MultipleComponent {
     @Select(actionsExecuting([AddPanda, AddBear])) public addPandaOrAddBearExecuting$: Observable<ActionsExecuting>;
     @Select(ZooState) public zoo$: Observable<ZooStateModel>;
 
-    constructor(
-        private store: Store
-    ) { }
-
+    constructor(private store: Store) {}
 
     public addPanda() {
         this.store.dispatch(new AddPanda());
