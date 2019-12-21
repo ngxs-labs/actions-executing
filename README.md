@@ -8,7 +8,7 @@
 
 ## Demo
 
-[Link](https://relaxed-wright-ebefdf.netlify.com)
+[Link](https://ngxs-labs-actions-executing.netlify.com/)
 
 ## Description
 
