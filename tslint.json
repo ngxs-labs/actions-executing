@@ -144,6 +144,6 @@
     "no-inferrable-types": false,
     "no-any": true,
     "no-duplicate-variable": true,
-    "member-access": true
+    "member-access": false
   }
 }
