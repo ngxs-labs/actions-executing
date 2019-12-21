@@ -21,7 +21,7 @@ export class SingleComponent implements OnInit {
 
     ngOnInit() {
         this.addBearExecutingCount$ = this.addBearExecuting$.pipe(
-            map((actionsExecuting) => actionsExecuting[AddBear.type])
+            map((_actionsExecuting) => _actionsExecuting[AddBear.type])
         );
     }
 

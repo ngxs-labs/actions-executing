@@ -83,17 +83,17 @@ describe('actionsExecuting', () => {
         }
     }
 
-    @State({
+    @State<{}>({
         name: 'nested_actions_1'
     })
     class NestedActions1State {
         @Action(NestedAsyncAction1)
-        public nestedAsyncAction1({ dispatch }: StateContext<any>) {
+        public nestedAsyncAction1({ dispatch }: StateContext<{}>) {
             return dispatch(new NestedAsyncAction2()).pipe(delay(0));
         }
 
         @Action(NestedAsyncAction2)
-        public nestedAsyncAction2({ dispatch }: StateContext<any>) {
+        public nestedAsyncAction2({ dispatch }: StateContext<{}>) {
             return dispatch(new NestedAsyncAction3()).pipe(delay(0));
         }
 
@@ -108,7 +108,7 @@ describe('actionsExecuting', () => {
     })
     class NestedActions2State {
         @Action([NestedAsyncAction4, NestedAsyncAction5])
-        public combinedAction({ dispatch }: StateContext<any>) {
+        public combinedAction({ dispatch }: StateContext<{}>) {
             return dispatch(new NestedAsyncAction6()).pipe(delay(0));
         }
 
@@ -164,8 +164,8 @@ describe('actionsExecuting', () => {
             it('should be executing between dispatch and complete', () => {
                 const actionStatus: ActionsExecuting[] = [];
 
-                store.select(actionsExecuting([Action1])).subscribe((actionsExecuting) => {
-                    actionStatus.push(actionsExecuting);
+                store.select(actionsExecuting([Action1])).subscribe((_actionsExecuting) => {
+                    actionStatus.push(_actionsExecuting);
                 });
 
                 store.dispatch(new Action1());
@@ -175,8 +175,8 @@ describe('actionsExecuting', () => {
             it('should be executing between dispatch and error', () => {
                 const actionStatus: ActionsExecuting[] = [];
 
-                store.select(actionsExecuting([ErrorAction1])).subscribe((actionsExecuting) => {
-                    actionStatus.push(actionsExecuting);
+                store.select(actionsExecuting([ErrorAction1])).subscribe((_actionsExecuting) => {
+                    actionStatus.push(_actionsExecuting);
                 });
 
                 store.dispatch(new ErrorAction1());
@@ -187,8 +187,8 @@ describe('actionsExecuting', () => {
             it('should be executing between dispatch and complete ', fakeAsync(() => {
                 const actionStatus: ActionsExecuting[] = [];
 
-                store.select(actionsExecuting([AsyncAction1])).subscribe((actionsExecuting) => {
-                    actionStatus.push(actionsExecuting);
+                store.select(actionsExecuting([AsyncAction1])).subscribe((_actionsExecuting) => {
+                    actionStatus.push(_actionsExecuting);
                 });
 
                 store.dispatch(new AsyncAction1());
@@ -199,8 +199,8 @@ describe('actionsExecuting', () => {
             it('should be executing between dispatch and error', fakeAsync(() => {
                 const actionStatus: ActionsExecuting[] = [];
 
-                store.select(actionsExecuting([AsyncErrorAction1])).subscribe((actionsExecuting) => {
-                    actionStatus.push(actionsExecuting);
+                store.select(actionsExecuting([AsyncErrorAction1])).subscribe((_actionsExecuting) => {
+                    actionStatus.push(_actionsExecuting);
                 });
 
                 store.dispatch(new AsyncErrorAction1()).subscribe({
@@ -220,8 +220,8 @@ describe('actionsExecuting', () => {
             it('should be executing between dispatch and complete', () => {
                 const actionStatus: ActionsExecuting[] = [];
 
-                store.select(actionsExecuting([Action1, Action2])).subscribe((actionsExecuting) => {
-                    actionStatus.push(actionsExecuting);
+                store.select(actionsExecuting([Action1, Action2])).subscribe((_actionsExecuting) => {
+                    actionStatus.push(_actionsExecuting);
                 });
 
                 store.dispatch(new Action1());
@@ -232,8 +232,8 @@ describe('actionsExecuting', () => {
             it('should be executing between dispatch and error', () => {
                 const actionStatus: ActionsExecuting[] = [];
 
-                store.select(actionsExecuting([Action1, ErrorAction1])).subscribe((actionsExecuting) => {
-                    actionStatus.push(actionsExecuting);
+                store.select(actionsExecuting([Action1, ErrorAction1])).subscribe((_actionsExecuting) => {
+                    actionStatus.push(_actionsExecuting);
                 });
 
                 store.dispatch(new Action1());
@@ -245,8 +245,8 @@ describe('actionsExecuting', () => {
             it('should be executing between dispatch and complete ', fakeAsync(() => {
                 const actionStatus: ActionsExecuting[] = [];
 
-                store.select(actionsExecuting([AsyncAction1, AsyncAction2])).subscribe((actionsExecuting) => {
-                    actionStatus.push(actionsExecuting);
+                store.select(actionsExecuting([AsyncAction1, AsyncAction2])).subscribe((_actionsExecuting) => {
+                    actionStatus.push(_actionsExecuting);
                 });
 
                 store.dispatch(new AsyncAction1());
@@ -266,8 +266,8 @@ describe('actionsExecuting', () => {
             it('should be executing between dispatch and error', fakeAsync(() => {
                 const actionStatus: ActionsExecuting[] = [];
 
-                store.select(actionsExecuting([AsyncAction1, AsyncErrorAction1])).subscribe((actionsExecuting) => {
-                    actionStatus.push(actionsExecuting);
+                store.select(actionsExecuting([AsyncAction1, AsyncErrorAction1])).subscribe((_actionsExecuting) => {
+                    actionStatus.push(_actionsExecuting);
                 });
 
                 store.dispatch(new AsyncAction1());
@@ -287,8 +287,8 @@ describe('actionsExecuting', () => {
             it('should be executing when action is dispatched multiple times', fakeAsync(() => {
                 const actionStatus: ActionsExecuting[] = [];
 
-                store.select(actionsExecuting([AsyncAction1])).subscribe((actionsExecuting) => {
-                    actionStatus.push(actionsExecuting);
+                store.select(actionsExecuting([AsyncAction1])).subscribe((_actionsExecuting) => {
+                    actionStatus.push(_actionsExecuting);
                 });
 
                 store.dispatch(new AsyncAction1());
@@ -307,8 +307,8 @@ describe('actionsExecuting', () => {
             it('should be executing when action is dispatched multiple times (case 2)', fakeAsync(() => {
                 const actionStatus: ActionsExecuting[] = [];
 
-                store.select(actionsExecuting([AsyncAction1])).subscribe((actionsExecuting) => {
-                    actionStatus.push(actionsExecuting);
+                store.select(actionsExecuting([AsyncAction1])).subscribe((_actionsExecuting) => {
+                    actionStatus.push(_actionsExecuting);
                 });
 
                 store.dispatch(new AsyncAction1());
@@ -332,22 +332,22 @@ describe('actionsExecuting', () => {
 
                     const combinedActionStatus: ActionsExecuting[] = [];
 
-                    store.select(actionsExecuting([NestedAsyncAction1])).subscribe((actionsExecuting) => {
-                        nestedAction1Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction1])).subscribe((_actionsExecuting) => {
+                        nestedAction1Status.push(_actionsExecuting);
                     });
 
-                    store.select(actionsExecuting([NestedAsyncAction2])).subscribe((actionsExecuting) => {
-                        nestedAction2Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction2])).subscribe((_actionsExecuting) => {
+                        nestedAction2Status.push(_actionsExecuting);
                     });
 
-                    store.select(actionsExecuting([NestedAsyncAction3])).subscribe((actionsExecuting) => {
-                        nestedAction3Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction3])).subscribe((_actionsExecuting) => {
+                        nestedAction3Status.push(_actionsExecuting);
                     });
 
                     store
                         .select(actionsExecuting([NestedAsyncAction1, NestedAsyncAction2, NestedAsyncAction3]))
-                        .subscribe((actionsExecuting) => {
-                            combinedActionStatus.push(actionsExecuting);
+                        .subscribe((_actionsExecuting) => {
+                            combinedActionStatus.push(_actionsExecuting);
                         });
 
                     store.dispatch(new NestedAsyncAction1());
@@ -395,28 +395,28 @@ describe('actionsExecuting', () => {
                     const combinedAction45Status: ActionsExecuting[] = [];
                     const combinedAction456Status: ActionsExecuting[] = [];
 
-                    store.select(actionsExecuting([NestedAsyncAction4])).subscribe((actionsExecuting) => {
-                        nestedAction4Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction4])).subscribe((_actionsExecuting) => {
+                        nestedAction4Status.push(_actionsExecuting);
                     });
 
-                    store.select(actionsExecuting([NestedAsyncAction5])).subscribe((actionsExecuting) => {
-                        nestedAction5Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction5])).subscribe((_actionsExecuting) => {
+                        nestedAction5Status.push(_actionsExecuting);
                     });
 
-                    store.select(actionsExecuting([NestedAsyncAction6])).subscribe((actionsExecuting) => {
-                        nestedAction6Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction6])).subscribe((_actionsExecuting) => {
+                        nestedAction6Status.push(_actionsExecuting);
                     });
 
                     store
                         .select(actionsExecuting([NestedAsyncAction4, NestedAsyncAction5]))
-                        .subscribe((actionsExecuting) => {
-                            combinedAction45Status.push(actionsExecuting);
+                        .subscribe((_actionsExecuting) => {
+                            combinedAction45Status.push(_actionsExecuting);
                         });
 
                     store
                         .select(actionsExecuting([NestedAsyncAction4, NestedAsyncAction5, NestedAsyncAction6]))
-                        .subscribe((actionsExecuting) => {
-                            combinedAction456Status.push(actionsExecuting);
+                        .subscribe((_actionsExecuting) => {
+                            combinedAction456Status.push(_actionsExecuting);
                         });
 
                     store.dispatch(new NestedAsyncAction4());
@@ -455,28 +455,28 @@ describe('actionsExecuting', () => {
                     const combinedAction45Status: ActionsExecuting[] = [];
                     const combinedAction456Status: ActionsExecuting[] = [];
 
-                    store.select(actionsExecuting([NestedAsyncAction4])).subscribe((actionsExecuting) => {
-                        nestedAction4Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction4])).subscribe((_actionsExecuting) => {
+                        nestedAction4Status.push(_actionsExecuting);
                     });
 
-                    store.select(actionsExecuting([NestedAsyncAction5])).subscribe((actionsExecuting) => {
-                        nestedAction5Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction5])).subscribe((_actionsExecuting) => {
+                        nestedAction5Status.push(_actionsExecuting);
                     });
 
-                    store.select(actionsExecuting([NestedAsyncAction6])).subscribe((actionsExecuting) => {
-                        nestedAction6Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction6])).subscribe((_actionsExecuting) => {
+                        nestedAction6Status.push(_actionsExecuting);
                     });
 
                     store
                         .select(actionsExecuting([NestedAsyncAction4, NestedAsyncAction5]))
-                        .subscribe((actionsExecuting) => {
-                            combinedAction45Status.push(actionsExecuting);
+                        .subscribe((_actionsExecuting) => {
+                            combinedAction45Status.push(_actionsExecuting);
                         });
 
                     store
                         .select(actionsExecuting([NestedAsyncAction4, NestedAsyncAction5, NestedAsyncAction6]))
-                        .subscribe((actionsExecuting) => {
-                            combinedAction456Status.push(actionsExecuting);
+                        .subscribe((_actionsExecuting) => {
+                            combinedAction456Status.push(_actionsExecuting);
                         });
 
                     store.dispatch([new NestedAsyncAction4(), new NestedAsyncAction5()]);
@@ -580,28 +580,28 @@ describe('actionsExecuting', () => {
                     const combinedAction45Status: ActionsExecuting[] = [];
                     const combinedAction456Status: ActionsExecuting[] = [];
 
-                    store.select(actionsExecuting([NestedAsyncAction4])).subscribe((actionsExecuting) => {
-                        nestedAction4Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction4])).subscribe((_actionsExecuting) => {
+                        nestedAction4Status.push(_actionsExecuting);
                     });
 
-                    store.select(actionsExecuting([NestedAsyncAction5])).subscribe((actionsExecuting) => {
-                        nestedAction5Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction5])).subscribe((_actionsExecuting) => {
+                        nestedAction5Status.push(_actionsExecuting);
                     });
 
-                    store.select(actionsExecuting([NestedAsyncAction6])).subscribe((actionsExecuting) => {
-                        nestedAction6Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction6])).subscribe((_actionsExecuting) => {
+                        nestedAction6Status.push(_actionsExecuting);
                     });
 
                     store
                         .select(actionsExecuting([NestedAsyncAction4, NestedAsyncAction5]))
-                        .subscribe((actionsExecuting) => {
-                            combinedAction45Status.push(actionsExecuting);
+                        .subscribe((_actionsExecuting) => {
+                            combinedAction45Status.push(_actionsExecuting);
                         });
 
                     store
                         .select(actionsExecuting([NestedAsyncAction4, NestedAsyncAction5, NestedAsyncAction6]))
-                        .subscribe((actionsExecuting) => {
-                            combinedAction456Status.push(actionsExecuting);
+                        .subscribe((_actionsExecuting) => {
+                            combinedAction456Status.push(_actionsExecuting);
                         });
 
                     store.dispatch(new NestedAsyncAction5());
@@ -649,28 +649,28 @@ describe('actionsExecuting', () => {
                     const combinedAction45Status: ActionsExecuting[] = [];
                     const combinedAction456Status: ActionsExecuting[] = [];
 
-                    store.select(actionsExecuting([NestedAsyncAction4])).subscribe((actionsExecuting) => {
-                        nestedAction4Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction4])).subscribe((_actionsExecuting) => {
+                        nestedAction4Status.push(_actionsExecuting);
                     });
 
-                    store.select(actionsExecuting([NestedAsyncAction5])).subscribe((actionsExecuting) => {
-                        nestedAction5Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction5])).subscribe((_actionsExecuting) => {
+                        nestedAction5Status.push(_actionsExecuting);
                     });
 
-                    store.select(actionsExecuting([NestedAsyncAction6])).subscribe((actionsExecuting) => {
-                        nestedAction6Status.push(actionsExecuting);
+                    store.select(actionsExecuting([NestedAsyncAction6])).subscribe((_actionsExecuting) => {
+                        nestedAction6Status.push(_actionsExecuting);
                     });
 
                     store
                         .select(actionsExecuting([NestedAsyncAction4, NestedAsyncAction5]))
-                        .subscribe((actionsExecuting) => {
-                            combinedAction45Status.push(actionsExecuting);
+                        .subscribe((_actionsExecuting) => {
+                            combinedAction45Status.push(_actionsExecuting);
                         });
 
                     store
                         .select(actionsExecuting([NestedAsyncAction4, NestedAsyncAction5, NestedAsyncAction6]))
-                        .subscribe((actionsExecuting) => {
-                            combinedAction456Status.push(actionsExecuting);
+                        .subscribe((_actionsExecuting) => {
+                            combinedAction456Status.push(_actionsExecuting);
                         });
 
                     store.dispatch([new NestedAsyncAction4(), new NestedAsyncAction5(), new NestedAsyncAction6()]);

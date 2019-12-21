@@ -16,10 +16,10 @@ export class ActionsExecutingState implements NgxsOnInit, OnDestroy {
 
     constructor(private actions$: Actions) {}
 
-    public ngxsOnInit({ patchState, getState }: StateContext<any>) {
+    public ngxsOnInit({ patchState, getState }: StateContext<ActionsExecutingStateModel>) {
         this._sub = this.actions$
             .pipe(
-                tap((actionContext: any) => {
+                tap((actionContext) => {
                     const actionType = getActionTypeFromInstance(actionContext.action);
                     if (!actionType) {
                         return;
