@@ -29,7 +29,7 @@ export class ActionsExecutingState implements NgxsOnInit, OnDestroy {
 
                     if (actionContext.status === ActionStatus.Dispatched) {
                         count++;
-                    } else {
+                    } else if (count > 0) {
                         count--;
                     }
 

@@ -19,6 +19,10 @@ export class ZooState {
         return state.bears;
     }
 
+    ngxsOnInit(ctx: StateContext<ZooState>) {
+        ctx.dispatch(AddPanda);
+    }
+
     @Action([AddPanda])
     public addPanda({ patchState, getState }: StateContext<ZooStateModel>) {
         return of({}).pipe(
