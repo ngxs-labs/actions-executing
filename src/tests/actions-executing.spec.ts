@@ -135,7 +135,7 @@ describe('actionsExecuting', () => {
         name: 'ngxs_on_init_state'
     })
     class NgxsOnInitState implements NgxsOnInit {
-        ngxsOnInit(ctx: StateContext<any>) {
+        ngxsOnInit(ctx: StateContext<{}>) {
             ctx.dispatch(new Action3());
             ctx.dispatch(new AsyncAction3());
         }
