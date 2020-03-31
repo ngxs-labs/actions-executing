@@ -2,9 +2,9 @@
     "name": "ngxs-actions-executing",
     "scripts": {
         "start": "ng serve --port=4256",
-        "build": "ng build ngxs-actions-executing && yarn copy-readme",
+        "build": " ng build ngxs-actions-executing",
+        "build:pre:publish": "yarn bump --release patch && yarn build && yarn copy-readme",
         "copy-readme": "ts-node --project tsconfig.tools.json ./tools/copy-readme",
-        "bump:patch": "yarn bump --release patch",
         "bump": "ts-node --project tsconfig.tools.json ./tools/bump",
         "build-integration": "ng build integration",
         "test": "jest --config ./jest.config.js",
