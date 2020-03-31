@@ -3,7 +3,7 @@ import { ActionsExecutingState, ActionsExecutingStateModel } from './actions-exe
 
 export type ActionsExecuting = { [action: string]: number } | null;
 
-export function actionsExecuting(actionTypes: ActionType[]) {
+export function actionsExecuting(actionTypes: ActionType[]): (state: ActionsExecutingStateModel) => ActionsExecuting {
     return createSelector(
         [ActionsExecutingState],
         (state: ActionsExecutingStateModel): ActionsExecuting => {
