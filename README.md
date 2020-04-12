@@ -1,4 +1,4 @@
-![main](https://github.com/ngxs-labs/actions-executing/workflows/main/badge.svg?branch=master)
+![master](https://github.com/ngxs-labs/actions-executing/workflows/main/badge.svg?branch=master)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/ngxs-labs/emitter/master/docs/assets/logo.png">
