@@ -1,4 +1,4 @@
-![master](https://github.com/ngxs-labs/actions-executing/workflows/main/badge.svg?branch=master)
+![master](https://github.com/ngxs-labs/actions-executing/workflows/main/badge.svg?branch=master) [![npm version](https://badge.fury.io/js/%40ngxs-labs%2Factions-executing.svg)](https://badge.fury.io/js/%40ngxs-labs%2Factions-executing)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/ngxs-labs/emitter/master/docs/assets/logo.png">
