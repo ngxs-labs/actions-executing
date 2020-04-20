@@ -186,25 +186,7 @@ describe('actionsExecuting', () => {
                     const snapshot = store.selectSnapshot(actionsExecuting([Action1]));
                     expect(snapshot).toBe(null);
                 });
-            });
 
-            describe('Async Action', () => {
-                it('should be null', fakeAsync(() => {
-                    store.dispatch(AsyncAction1);
-
-                    let snapshot = store.selectSnapshot(actionsExecuting([AsyncAction1]));
-                    expect(snapshot).toEqual({ 'ASYNC ACTION 1': 1 });
-
-                    tick();
-
-                    snapshot = store.selectSnapshot(actionsExecuting([AsyncAction1]));
-                    expect(snapshot).toBe(null);
-                }));
-            });
-        });
-
-        describe('Single Action', () => {
-            describe('Sync', () => {
                 it('should be executing between dispatch and complete', () => {
                     const actionStatus: ActionsExecuting[] = [];
 
@@ -227,7 +209,20 @@ describe('actionsExecuting', () => {
                     expect(actionStatus).toEqual([null, { [ErrorAction1.type]: 1 }, null]);
                 });
             });
-            describe('Async', () => {
+
+            describe('Async Action', () => {
+                it('should be null', fakeAsync(() => {
+                    store.dispatch(AsyncAction1);
+
+                    let snapshot = store.selectSnapshot(actionsExecuting([AsyncAction1]));
+                    expect(snapshot).toEqual({ 'ASYNC ACTION 1': 1 });
+
+                    tick();
+
+                    snapshot = store.selectSnapshot(actionsExecuting([AsyncAction1]));
+                    expect(snapshot).toBe(null);
+                }));
+
                 it('should be executing between dispatch and complete ', fakeAsync(() => {
                     const actionStatus: ActionsExecuting[] = [];
 
@@ -834,6 +829,51 @@ describe('actionsExecuting', () => {
                         ]);
                     }));
                 });
+            });
+        });
+
+        describe('No Actions', () => {
+            describe('sync', () => {
+                it('should be executing between dispatch and complete', () => {
+                    const actionStatus: ActionsExecuting[] = [];
+
+                    store.select(actionsExecuting()).subscribe((_actionsExecuting) => {
+                        actionStatus.push(_actionsExecuting);
+                    });
+
+                    store.dispatch(new Action1());
+                    store.dispatch(new Action2());
+                    expect(actionStatus).toEqual([
+                        null,
+                        { [Action1.type]: 1 },
+                        { [Action1.type]: 0 },
+                        { [Action1.type]: 0, [Action2.type]: 1 },
+                        { [Action1.type]: 0, [Action2.type]: 0 }
+                    ]);
+                });
+            });
+
+            describe('async', () => {
+                it('should be executing between dispatch and complete ', fakeAsync(() => {
+                    const actionStatus: ActionsExecuting[] = [];
+
+                    store.select(actionsExecuting()).subscribe((_actionsExecuting) => {
+                        actionStatus.push(_actionsExecuting);
+                    });
+
+                    store.dispatch(new AsyncAction1());
+                    tick(1);
+                    expect(actionStatus).toEqual([null, { [AsyncAction1.type]: 1 }, { [AsyncAction1.type]: 0 }]);
+                    store.dispatch(new AsyncAction2());
+                    tick(1);
+                    expect(actionStatus).toEqual([
+                        null,
+                        { [AsyncAction1.type]: 1 },
+                        { [AsyncAction1.type]: 0 },
+                        { [AsyncAction1.type]: 0, [AsyncAction2.type]: 1 },
+                        { [AsyncAction1.type]: 0, [AsyncAction2.type]: 0 }
+                    ]);
+                }));
             });
         });
     });

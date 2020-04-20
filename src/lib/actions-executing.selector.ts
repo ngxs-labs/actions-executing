@@ -8,7 +8,10 @@ export function actionsExecuting(actionTypes?: ActionType[]): (state: ActionsExe
         [ActionsExecutingState],
         (state: ActionsExecutingStateModel): ActionsExecuting => {
             if (!actionTypes || actionTypes.length === 0) {
-                return { ...state };
+                if (Object.keys(state).length === 0) {
+                    return null;
+                }
+                return state;
             }
 
             return actionTypes.reduce((acc: ActionsExecuting, type: ActionType) => {
