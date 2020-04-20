@@ -3,10 +3,14 @@ import { ActionsExecutingState, ActionsExecutingStateModel } from './actions-exe
 
 export type ActionsExecuting = { [action: string]: number } | null;
 
-export function actionsExecuting(actionTypes: ActionType[]): (state: ActionsExecutingStateModel) => ActionsExecuting {
+export function actionsExecuting(actionTypes?: ActionType[]): (state: ActionsExecutingStateModel) => ActionsExecuting {
     return createSelector(
         [ActionsExecutingState],
         (state: ActionsExecutingStateModel): ActionsExecuting => {
+            if (!actionTypes || actionTypes.length === 0) {
+                return state;
+            }
+
             return actionTypes.reduce((acc: ActionsExecuting, type: ActionType) => {
                 const actionType = getActionTypeFromInstance(type);
 
