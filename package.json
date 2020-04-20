@@ -9,6 +9,7 @@
         "build-integration": "ng build integration",
         "test": "jest --config ./jest.config.js",
         "test:ci": "jest --config ./jest.config.js --coverage",
+        "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --config ./jest.config.js",
         "format": "prettier --write",
         "lint": "tslint '{src,integration}/**/*.ts' --project tsconfig.json"
     },
