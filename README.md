@@ -1,4 +1,4 @@
-![master](https://github.com/ngxs-labs/actions-executing/workflows/main/badge.svg?branch=master) [![npm version](https://badge.fury.io/js/%40ngxs-labs%2Factions-executing.svg)](https://badge.fury.io/js/%40ngxs-labs%2Factions-executing) [![Coverage Status](https://coveralls.io/repos/github/ngxs-labs/actions-executing/badge.svg?branch=master)](https://coveralls.io/github/ngxs-labs/actions-executing?branch=master)
+![master](https://github.com/ngxs-labs/actions-executing/workflows/main/badge.svg?branch=master) [![npm version](https://badge.fury.io/js/%40ngxs-labs%2Factions-executing.svg)](https://badge.fury.io/js/%40ngxs-labs%2Factions-executing) [![Coverage Status](https://coveralls.io/repos/github/ngxs-labs/actions-executing/badge.svg?branch=master)](https://coveralls.io/github/ngxs-labs/actions-executing?branch=master) 
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/ngxs-labs/emitter/master/docs/assets/logo.png">
