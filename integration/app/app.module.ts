@@ -3,12 +3,12 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxsActionsExecutingModule } from '@ngxs-labs/actions-executing';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ZooState } from './examples/states/zoo/zoo.state';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 @NgModule({
     declarations: [AppComponent],
@@ -34,7 +34,8 @@ import { ZooState } from './examples/states/zoo/zoo.state';
             developmentMode: !environment.production
         }),
         NgxsLoggerPluginModule.forRoot(),
-        NgxsActionsExecutingModule.forRoot()
+        NgxsActionsExecutingModule.forRoot(),
+        NgxsReduxDevtoolsPluginModule.forRoot()
     ],
     providers: [],
     bootstrap: [AppComponent]
