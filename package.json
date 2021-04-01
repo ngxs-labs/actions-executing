@@ -2,7 +2,7 @@
     "name": "ngxs-actions-executing",
     "scripts": {
         "start": "ng serve --port=4256",
-        "build": " ng build ngxs-actions-executing",
+        "build": "ng build ngxs-actions-executing",
         "build:pre:publish": "yarn bump --release patch && yarn build && yarn copy-readme",
         "copy-readme": "ts-node --project tsconfig.tools.json ./tools/copy-readme",
         "bump": "ts-node --project tsconfig.tools.json ./tools/bump",
@@ -22,8 +22,8 @@
         "@angular/platform-browser": "^8.2.11",
         "@angular/platform-browser-dynamic": "^8.2.11",
         "@angular/router": "^8.2.11",
-        "@ngxs/logger-plugin": "^3.5.1",
-        "@ngxs/store": "^3.5.0",
+        "@ngxs/logger-plugin": "^3.7.1",
+        "@ngxs/store": "^3.7.1",
         "bootstrap": "^4.3.1",
         "core-js": "^3.6.0",
         "rxjs": "^6.5.3",
@@ -60,7 +60,6 @@
         "ts-loader": "^6.0.4",
         "ts-node": "^8.3.0",
         "tsickle": "^0.37.1",
-        "tslib": "^1.10.0",
         "tslint": "^5.19.0",
         "tslint-sonarts": "^1.9.0",
         "typescript": "~3.5.3"
