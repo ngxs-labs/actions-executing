@@ -3,6 +3,7 @@ import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { NgxsModule, Store, State, Action, StateContext, NgxsOnInit } from '@ngxs/store';
 import { of, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 
 describe('actionsExecuting', () => {
     let store: Store;
@@ -66,6 +67,7 @@ describe('actionsExecuting', () => {
     @State({
         name: 'test'
     })
+    @Injectable()
     class TestState {
         @Action([Action1])
         public action1() {}
@@ -94,6 +96,7 @@ describe('actionsExecuting', () => {
     @State<{}>({
         name: 'nested_actions_1'
     })
+    @Injectable()
     class NestedActions1State {
         @Action(NestedAsyncAction1)
         public nestedAsyncAction1({ dispatch }: StateContext<{}>) {
@@ -114,6 +117,7 @@ describe('actionsExecuting', () => {
     @State({
         name: 'nested_actions_2'
     })
+    @Injectable()
     class NestedActions2State {
         @Action([NestedAsyncAction4, NestedAsyncAction5])
         public combinedAction({ dispatch }: StateContext<{}>) {
@@ -134,6 +138,7 @@ describe('actionsExecuting', () => {
     @State({
         name: 'ngxs_on_init_state'
     })
+    @Injectable()
     class NgxsOnInitState implements NgxsOnInit {
         ngxsOnInit(ctx: StateContext<{}>) {
             ctx.dispatch(new Action3());
