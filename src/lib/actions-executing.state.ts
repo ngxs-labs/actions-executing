@@ -9,7 +9,7 @@ export interface ActionsExecutingStateModel {
 }
 
 @State<ActionsExecutingStateModel>({
-    name: 'ActionsExecuting'
+    name: 'ngxs_actions_executing'
 })
 @Injectable()
 export class ActionsExecutingState implements NgxsOnInit, OnDestroy {
