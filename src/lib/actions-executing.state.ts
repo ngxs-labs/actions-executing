@@ -26,7 +26,7 @@ export class ActionsExecutingState implements NgxsOnInit, OnDestroy {
                         return;
                     }
 
-                    let count = getState()?.[actionType] ?? 0;
+                    let count = getState()?.[actionType] || 0;
 
                     if (actionContext.status === ActionStatus.Dispatched) {
                         count++;
