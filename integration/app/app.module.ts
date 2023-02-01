@@ -15,21 +15,24 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
     imports: [
         BrowserModule,
         FormsModule,
-        RouterModule.forRoot([
-            {
-                path: '',
-                redirectTo: 'single',
-                pathMatch: 'full'
-            },
-            {
-                path: 'single',
-                loadChildren: () => import('./examples/single/single.module').then((m) => m.FirstModule)
-            },
-            {
-                path: 'multiple',
-                loadChildren: () => import('./examples/multiple/multiple.module').then((m) => m.SecondModule)
-            }
-        ]),
+        RouterModule.forRoot(
+            [
+                {
+                    path: '',
+                    redirectTo: 'single',
+                    pathMatch: 'full'
+                },
+                {
+                    path: 'single',
+                    loadChildren: () => import('./examples/single/single.module').then((m) => m.FirstModule)
+                },
+                {
+                    path: 'multiple',
+                    loadChildren: () => import('./examples/multiple/multiple.module').then((m) => m.SecondModule)
+                }
+            ],
+            { relativeLinkResolution: 'legacy' }
+        ),
         NgxsModule.forRoot([ZooState], {
             developmentMode: !environment.production
         }),
