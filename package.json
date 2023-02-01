@@ -2,8 +2,7 @@
     "name": "ngxs-actions-executing",
     "scripts": {
         "start": "ng serve --port=4256",
-        "build": "ng build ngxs-actions-executing --prod",
-        "build:pre:publish": "yarn bump --release patch && yarn build && yarn copy-readme",
+        "build": "ng build ngxs-firestore --configuration production && yarn copy-readme",
         "copy-readme": "ts-node --project tsconfig.tools.json ./tools/copy-readme",
         "bump": "ts-node --project tsconfig.tools.json ./tools/bump",
         "build-integration": "ng build integration",
