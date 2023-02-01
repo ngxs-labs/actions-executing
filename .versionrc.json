@@ -1,0 +1,14 @@
+{
+    "packageFiles": [
+        {
+            "filename": "src/package.json",
+            "type": "json"
+        }
+    ],
+    "bumpFiles": [
+        {
+            "filename": "src/package.json",
+            "type": "json"
+        }
+    ]
+}
