@@ -92,7 +92,6 @@
             }
         }
     },
-    "defaultProject": "integration",
     "cli": {
         "analytics": false
     }
