@@ -2,6 +2,9 @@
     "$schema": "../node_modules/ng-packagr/ng-package.schema.json",
     "dest": "../dist/ngxs-actions-executing",
     "lib": {
-        "entryFile": "public-api.ts"
+        "entryFile": "public-api.ts",
+        "umdModuleIds": {
+            "@ngxs/store": "ngxs-store"
+        }
     }
 }
