@@ -1,5 +1,5 @@
 const path = require('path');
-const { pathsToModuleNameMapper: resolver } = require('ts-jest/utils');
+const { pathsToModuleNameMapper: resolver } = require('ts-jest');
 const { compilerOptions } = require('./tsconfig');
 const moduleNameMapper = resolver(compilerOptions.paths, { prefix: '<rootDir>/' });
 
@@ -16,7 +16,7 @@ module.exports = {
     coveragePathIgnorePatterns: ['/node_modules/'],
     globals: {
         'ts-jest': {
-            tsConfig: '<rootDir>/tsconfig.json',
+            tsconfig: '<rootDir>/tsconfig.json',
             allowSyntheticDefaultImports: true
         }
     },

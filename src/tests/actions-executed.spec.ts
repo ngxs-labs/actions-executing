@@ -194,7 +194,7 @@ describe('actionsExecuted', () => {
                 ]
             });
 
-            store = TestBed.get(Store);
+            store = TestBed.inject(Store);
         });
 
         describe('Single Action', () => {
