@@ -1,4 +1,6 @@
-![master](https://github.com/ngxs-labs/actions-executing/workflows/main/badge.svg?branch=master) [![npm version](https://badge.fury.io/js/%40ngxs-labs%2Factions-executing.svg)](https://badge.fury.io/js/%40ngxs-labs%2Factions-executing) [![Coverage Status](https://coveralls.io/repos/github/ngxs-labs/actions-executing/badge.svg?branch=master)](https://coveralls.io/github/ngxs-labs/actions-executing?branch=master)
+![master](https://github.com/ngxs-labs/actions-executing/workflows/main/badge.svg?branch=master)
+[![npm version](https://badge.fury.io/js/%40ngxs-labs%2Factions-executing.svg)](https://badge.fury.io/js/%40ngxs-labs%2Factions-executing)
+[![Coverage Status](https://coveralls.io/repos/github/ngxs-labs/actions-executing/badge.svg?branch=master)](https://coveralls.io/github/ngxs-labs/actions-executing?branch=master)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/ngxs-labs/emitter/master/docs/assets/logo.png">
@@ -17,6 +19,13 @@
 This plugin allows you to easily know if an action is being executed and control UI elements or control flow of your
 code to execute. The most common scenarios for using this plugin are to display loading spinner or disable a button
 while an action is executing.
+
+## Compatibility
+
+| Angular | @ngxs-labs/actions-executing   |
+| ------- | ------------------------------ |
+| non-ivy | 0.x                            |
+| ivy     | 1.x (compiled in partial mode) |
 
 ## Quick start
 
