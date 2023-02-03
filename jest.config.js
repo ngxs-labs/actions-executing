@@ -1,27 +1,16 @@
-const path = require('path');
-const { pathsToModuleNameMapper: resolver } = require('ts-jest');
-const { compilerOptions } = require('./tsconfig');
-const moduleNameMapper = resolver(compilerOptions.paths, { prefix: '<rootDir>/' });
+const { pathsToModuleNameMapper } = require('ts-jest');
+const { paths } = require('./tsconfig.json').compilerOptions;
 
+// eslint-disable-next-line no-undef
+globalThis.ngJest = {
+    skipNgcc: false,
+    tsconfig: 'tsconfig.spec.json'
+};
+
+/** @type {import('ts-jest/dist/types').JestConfigWithTsJest} */
 module.exports = {
-    verbose: true,
-    watch: false,
-    cache: false,
     preset: 'jest-preset-angular',
-    rootDir: path.resolve('.'),
-    testMatch: ['<rootDir>/src/tests/**/*.spec.ts'],
-    collectCoverageFrom: ['<rootDir>/src/lib/**/*.ts'],
-    setupFilesAfterEnv: ['<rootDir>/setupJest.ts'],
-    coverageReporters: ['json', 'lcovonly', 'lcov', 'text', 'html'],
-    coveragePathIgnorePatterns: ['/node_modules/'],
-    globals: {
-        'ts-jest': {
-            tsconfig: '<rootDir>/tsconfig.json',
-            allowSyntheticDefaultImports: true
-        }
-    },
-    bail: true,
-    moduleNameMapper,
-    modulePathIgnorePatterns: ['<rootDir>/dist/'],
-    modulePaths: ['<rootDir>']
+    globalSetup: 'jest-preset-angular/global-setup',
+    moduleNameMapper: pathsToModuleNameMapper(paths, { prefix: '<rootDir>' }),
+    setupFilesAfterEnv: ['<rootDir>/setup-jest.ts']
 };
