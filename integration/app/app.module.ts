@@ -31,7 +31,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
                     loadChildren: () => import('./examples/multiple/multiple.module').then((m) => m.SecondModule)
                 }
             ],
-            { relativeLinkResolution: 'legacy' }
+            {}
         ),
         NgxsModule.forRoot([ZooState], {
             developmentMode: !environment.production
