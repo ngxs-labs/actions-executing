@@ -15,22 +15,22 @@
             },
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:browser",
+                    "builder": "@angular-devkit/build-angular:application",
                     "options": {
-                        "outputPath": "dist/integration",
+                        "outputPath": {
+                            "base": "dist/integration"
+                        },
                         "index": "integration/index.html",
-                        "main": "integration/main.ts",
-                        "polyfills": "integration/polyfills.ts",
+                        "polyfills": ["integration/polyfills.ts"],
                         "tsConfig": "integration/tsconfig.app.json",
                         "assets": ["integration/favicon.ico", "integration/assets", "integration/_redirects"],
                         "styles": ["integration/styles.scss"],
                         "scripts": [],
-                        "vendorChunk": true,
                         "extractLicenses": false,
-                        "buildOptimizer": false,
                         "sourceMap": true,
                         "optimization": false,
-                        "namedChunks": true
+                        "namedChunks": true,
+                        "browser": "integration/main.ts"
                     },
                     "configurations": {
                         "production": {
@@ -50,9 +50,7 @@
                             "outputHashing": "all",
                             "sourceMap": false,
                             "namedChunks": false,
-                            "extractLicenses": true,
-                            "vendorChunk": false,
-                            "buildOptimizer": true
+                            "extractLicenses": true
                         }
                     },
                     "defaultConfiguration": ""
