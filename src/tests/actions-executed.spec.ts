@@ -161,7 +161,7 @@ describe('actionsExecuted', () => {
                     imports: [NgxsModule.forRoot([NgxsOnInitState]), NgxsActionsExecutingModule.forRoot()]
                 });
 
-                store = TestBed.get(Store);
+                store = TestBed.inject(Store);
 
                 tick(1);
 
@@ -175,7 +175,7 @@ describe('actionsExecuted', () => {
                     imports: [NgxsModule.forRoot([NgxsOnInitState]), NgxsActionsExecutingModule.forRoot()]
                 });
 
-                store = TestBed.get(Store);
+                store = TestBed.inject(Store);
 
                 tick(1);
                 expect(store.selectSnapshot(actionsExecuted([AsyncAction3]))).toEqual({ [AsyncAction3.type]: 1 });

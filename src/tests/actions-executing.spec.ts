@@ -161,7 +161,7 @@ describe('actionsExecuting', () => {
                     imports: [NgxsModule.forRoot([NgxsOnInitState]), NgxsActionsExecutingModule.forRoot()]
                 });
 
-                store = TestBed.get(Store);
+                store = TestBed.inject(Store);
 
                 tick(1);
 
@@ -180,7 +180,7 @@ describe('actionsExecuting', () => {
                 ]
             });
 
-            store = TestBed.get(Store);
+            store = TestBed.inject(Store);
         });
 
         describe('Single Action', () => {

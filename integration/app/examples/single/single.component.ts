@@ -9,7 +9,8 @@ import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'single',
-    templateUrl: 'single.component.html'
+    templateUrl: 'single.component.html',
+    standalone: false
 })
 export class SingleComponent implements OnInit {
     @Select(actionsExecuting([AddPanda])) public addPandaExecuting$: Observable<ActionsExecuting>;

@@ -9,7 +9,8 @@ import { ZooStateModel } from '../states/zoo/zoo.model';
 @Component({
     selector: 'multiple',
     templateUrl: './multiple.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MultipleComponent {
     @Select(actionsExecuting([AddPanda])) public addPandaExecuting$: Observable<ActionsExecuting>;
