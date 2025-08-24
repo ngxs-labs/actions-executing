@@ -1,8 +1,7 @@
-import { State, NgxsOnInit, StateContext, Actions, getActionTypeFromInstance } from '@ngxs/store';
+import { State, NgxsOnInit, StateContext, Actions, getActionTypeFromInstance, ActionStatus } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { OnDestroy, Injectable } from '@angular/core';
-import { ActionStatus } from '@ngxs/store/src/actions-stream';
 
 export interface ActionsExecutedStateModel {
     [action: string]: number;
