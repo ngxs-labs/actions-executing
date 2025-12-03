@@ -1,16 +1,13 @@
 {
     "name": "@ngxs-labs/actions-executing",
-    "version": "20.0.0",
+    "version": "20.0.1",
     "peerDependencies": {
-        "@ngxs/store": ">=4.0.0 <21.0.0"
+        "@ngxs/store": ">=18.0.0 <21.0.0"
     },
     "homepage": "https://github.com/ngxs-labs/actions-executing#readme",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/ngxs-labs/actions-executing.git"
-    },
-    "dependencies": {
-        "tslib": "^2.0.0"
     },
     "license": "MIT"
 }
