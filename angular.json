@@ -15,7 +15,7 @@
             },
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:application",
+                    "builder": "@angular/build:application",
                     "options": {
                         "outputPath": {
                             "base": "dist/integration"
@@ -56,7 +56,7 @@
                     "defaultConfiguration": ""
                 },
                 "serve": {
-                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "builder": "@angular/build:dev-server",
                     "options": {
                         "buildTarget": "integration:build"
                     },
@@ -75,7 +75,7 @@
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "tsConfig": "src/tsconfig.lib.json",
                         "project": "src/ng-package.json"
