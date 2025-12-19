@@ -1,7 +1,8 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See
-[standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [21.0.0](https://github.com/ngxs-labs/actions-executing/compare/v20.0.1...v21.0.0) (2025-12-19)
 
 ### [20.0.1](https://github.com/ngxs-labs/actions-executing/compare/v18.0.0...v20.0.1) (2025-12-03)
 
