@@ -2,7 +2,7 @@
     "name": "@ngxs-labs/actions-executing",
     "version": "21.0.0",
     "peerDependencies": {
-        "@ngxs/store": ">=18.0.0 <22.0.0"
+        "@ngxs/store": ">=18.0.0 <23.0.0"
     },
     "homepage": "https://github.com/ngxs-labs/actions-executing#readme",
     "repository": {

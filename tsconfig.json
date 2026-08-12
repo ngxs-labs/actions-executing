@@ -16,5 +16,16 @@
       "@ngxs-labs/actions-executing": ["src/public-api.ts"]
     },
     "useDefineForClassFields": false
-  }
+  },
+  "references": [
+    {
+      "path": "./tsconfig.tools.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./tsconfig.editor.json"
+    }
+  ]
 }
