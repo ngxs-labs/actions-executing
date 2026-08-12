@@ -3,7 +3,7 @@ import { ActionsExecutingState, ActionsExecutingStateModel } from './actions-exe
 
 export type ActionsExecuting = { [action: string]: number } | null;
 
-function actionsExecutingFn(actionTypes: ActionType[], state: ActionsExecutingStateModel): ActionsExecuting {
+function actionsExecutingFn(actionTypes: ActionType[] | undefined, state: ActionsExecutingStateModel): ActionsExecuting {
     if (!actionTypes || actionTypes.length === 0) {
         if (Object.keys(state).length === 0) {
             return null;

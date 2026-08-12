@@ -1,10 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { actionsExecuting, ActionsExecuting } from '@ngxs-labs/actions-executing';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { actionsExecuting } from '@ngxs-labs/actions-executing';
 import { AddPanda, AddBear } from '../states/zoo/zoo.actions';
-import { Observable } from 'rxjs';
-import { ZooState } from '../states/zoo/zoo.state';
-import { ZooStateModel } from '../states/zoo/zoo.model';
+import { zooSelectors } from '../states/zoo/zoo.selectors';
 
 @Component({
     selector: 'multiple',
@@ -13,12 +11,12 @@ import { ZooStateModel } from '../states/zoo/zoo.model';
     standalone: false
 })
 export class MultipleComponent {
-    @Select(actionsExecuting([AddPanda])) public addPandaExecuting$: Observable<ActionsExecuting>;
-    @Select(actionsExecuting([AddBear])) public addBearExecuting$: Observable<ActionsExecuting>;
-    @Select(actionsExecuting([AddPanda, AddBear])) public addPandaOrAddBearExecuting$: Observable<ActionsExecuting>;
-    @Select(ZooState) public zoo$: Observable<ZooStateModel>;
+    store = inject(Store);
 
-    constructor(private store: Store) {}
+    addPandaExecuting$ = this.store.select(actionsExecuting([AddPanda]));
+    addBearExecuting$ = this.store.select(actionsExecuting([AddBear]));
+    addPandaOrAddBearExecuting$ = this.store.select(actionsExecuting([AddPanda, AddBear]));
+    zoo$ = this.store.select(zooSelectors.pandas);
 
     public addPanda() {
         this.store.dispatch(new AddPanda());

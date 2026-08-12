@@ -1,7 +1,7 @@
 import { State, NgxsOnInit, StateContext, Actions, getActionTypeFromInstance, ActionStatus } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { OnDestroy, Injectable } from '@angular/core';
+import { OnDestroy, Injectable, inject } from '@angular/core';
 
 export interface ActionsExecutedStateModel {
     [action: string]: number;
@@ -12,9 +12,9 @@ export interface ActionsExecutedStateModel {
 })
 @Injectable()
 export class ActionsExecutedState implements NgxsOnInit, OnDestroy {
-    private actionsExecutedSub: Subscription = new Subscription();
+    actions$ = inject(Actions);
 
-    constructor(private actions$: Actions) {}
+    private actionsExecutedSub: Subscription = new Subscription();
 
     public ngxsOnInit({ patchState, getState }: StateContext<ActionsExecutedStateModel>) {
         this.actionsExecutedSub = this.actions$
