@@ -1,20 +1,20 @@
 {
-    "compileOnSave": false,
-    "compilerOptions": {
-        "baseUrl": "./",
-        "ignoreDeprecations": "6.0",
-        "noUnusedLocals": true,
-        "outDir": "./dist/out-tsc",
-        "sourceMap": true,
-        "moduleResolution": "bundler",
-        "resolveJsonModule": true,
-        "esModuleInterop": true,
-        "experimentalDecorators": true,
-        "target": "ES2022",
-        "typeRoots": ["node_modules/@types"],
-        "paths": {
-            "@ngxs-labs/actions-executing": ["src/public-api.ts"]
-        },
-        "useDefineForClassFields": false
-    }
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "ignoreDeprecations": "6.0",
+    "noUnusedLocals": true,
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "target": "ES2022",
+    "typeRoots": ["node_modules/@types"],
+    "paths": {
+      "@ngxs-labs/actions-executing": ["src/public-api.ts"]
+    },
+    "useDefineForClassFields": false
+  }
 }

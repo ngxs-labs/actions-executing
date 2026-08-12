@@ -3,6 +3,7 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "allowJs": true,
-    "module": "commonjs"
+    "module": "commonjs",
+    "types": ["node"]
   }
 }
