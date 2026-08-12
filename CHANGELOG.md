@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [22.0.1](https://github.com/ngxs-labs/actions-executing/compare/v21.0.0...v22.0.1) (2026-08-12)
+
 ## [21.0.0](https://github.com/ngxs-labs/actions-executing/compare/v20.0.1...v21.0.0) (2025-12-19)
 
 ### [20.0.1](https://github.com/ngxs-labs/actions-executing/compare/v18.0.0...v20.0.1) (2025-12-03)

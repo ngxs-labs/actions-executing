@@ -1,6 +1,6 @@
 {
   "name": "@ngxs-labs/actions-executing",
-  "version": "22.0.0",
+  "version": "22.0.1",
   "peerDependencies": {
     "@ngxs/store": ">=18.0.0 <23.0.0"
   },
